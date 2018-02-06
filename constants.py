@@ -25,4 +25,7 @@ clawCrossed = 0
 clawOpen = 1740
 clawMiddle = 600
 
+#Tophat
+FRONT_TOPHAT = 200
+frontLineFollowerGrey = 3200
 

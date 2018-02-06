@@ -20,11 +20,11 @@ import drive as d
 import wallaby as w
 
 def waitForButton():
-    print "Press Button..."
+    print("Press Button...")
     while not digital(c.RIGHT_BUTTON):
         pass
     msleep(1)
-    print "Pressed"
+    print("Pressed")
     msleep(1000)
 
 
@@ -32,7 +32,7 @@ def DEBUG():
     freeze(c.LMOTOR)
     freeze(c.RMOTOR)
     ao()
-    print 'Program stop for DEBUG\nSeconds: ', seconds() - c.startTime
+    print('Program stop for DEBUG\nSeconds: ', seconds() - c.startTime)
     exit(0)
 
 
@@ -40,7 +40,7 @@ def DEBUGwithWait():
     freeze(c.LMOTOR)
     freeze(c.RMOTOR)
     ao()
-    print 'Program stop for DEBUG\nSeconds: ', seconds() - c.startTime
+    print ('Program stop for DEBUG\nSeconds: ', seconds() - c.startTime)
     msleep(5000)
 
 # Servo Constants
@@ -56,10 +56,10 @@ def move_servo(servo, endPos, speed=10):  # Moves a servo with increment "speed"
     if speed == 0:
         speed = 2047
     if endPos >= 2048:
-        print "Programmer Error"
+        print("Programmer Error")
         exit(0)
     if endPos < 0:
-        print "Programmer Error"
+        print("Programmer Error")
         exit(0)
     if now > endPos:
         speed = -speed

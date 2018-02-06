@@ -21,12 +21,12 @@ def drive(left, right):
 def lineFollowLeft(time):
     sec = seconds()
     while(seconds()-sec<time):
-        if(analog(0)<1000):
-            drive(60,55)
-        elif(analog(0)>1000 and analog(0)<2000):
-            drive(60,60)
+        if(analog(0)<3600):
+            drive(70,45)
+        elif(analog(0)>3600 and analog(0)<100):
+            drive(70,70)
         else:
-            drive(55,60)
+            drive(45,70)
     drive(0,0)
 
 def lineFollowRight(time):

@@ -35,7 +35,7 @@ def turnAndDrive():
     mpp.pivot_right(126, 40)
     mpp.drive_speed(4.5, 40)
     ao() #alloff
-    msleep(3000)
+    msleep(2000)
 
 
 def sortSecondPile():
@@ -50,7 +50,11 @@ def driveToNextPoms():
     u.move_servo(c.servoClaw, c.clawMiddle)
     mpp.drive_speed(7, 40)
     u.move_servo(c.servoClaw, c.clawOpen)
-    mpp.drive_speed(7.5, 40)
+    mpp.drive_speed(9.5, 40)
+    '''
+    while not u.onBlackFront():
+        mpp._drive(75,50)
+        print("on black")'''
     # x.lineFollowLeft(2.05)
 
 def sortThirdPile():
@@ -62,13 +66,13 @@ def sortThirdPile():
     msleep(2000)
 
 def driveToFourthPile():
-    x.lineFollowLeft(5.85)
+    x.lineFollowLeft(7.25)#5.85
 
 def driveToDeposit():
     mpp.rotate(90, 40)
     mpp.drive_speed(14, 40)
     mpp.rotate(90, 40)
-    x.lineFollowLeft(10)
+    x.lineFollowLeft(13)
 
 def goToAquifer():
     mpp.rotate(90, 40)

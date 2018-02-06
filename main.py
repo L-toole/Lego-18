@@ -5,7 +5,7 @@ import utils as u
 import motorsPlusPlus as mpp
 
 def main():
-    print 'hello People'
+    print ("hello People")
     act.init()
     act.driveOutStartBox()
     act.sortPoms()
@@ -13,8 +13,9 @@ def main():
     act.sortSecondPile()
     act.driveToNextPoms()
     act.sortThirdPile()
-    u.DEBUG()
     act.driveToFourthPile()
+    act.sortPoms()
+    u.DEBUG()
     act.driveToNextPoms()
     act.driveToNextPoms()
     act.driveToDeposit()
