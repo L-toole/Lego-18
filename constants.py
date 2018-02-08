@@ -26,6 +26,5 @@ clawOpen = 1740
 clawMiddle = 600
 
 #Tophat
-FRONT_TOPHAT = 200
-frontLineFollowerGrey = 3200
-
+FRONT_TOPHAT = 0
+onBlack = 3000

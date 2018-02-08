@@ -32,7 +32,7 @@ WHEEL_DISTANCE = 5.00 #205 - 4.25  # Distance between the two wheels
 lAdjust = 1.00 # adjust left wheel counter to fix drift
 
 if isClone:
-    INCHES_TO_TICKS = 190
+    INCHES_TO_TICKS = 227
 
 
 # Motor Control #
@@ -157,6 +157,7 @@ def drive_timed(lmotor, rmotor, time):
     freeze_motors()
     print (get_motor_position_counter(RMOTOR))
     ao()
+
 
 def drive_condition(lmotor, rmotor, testFunction,
                     state=True):  # Drives while "testFunction" returns "state" | an example would be: x.drive_condition(50, 50, x.getWait)

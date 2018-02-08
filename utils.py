@@ -91,19 +91,10 @@ def setWait(DELAY):  # Sets wait time in seconds before breaking a loop.
 def getWait():  # Used to break a loop after using "setWait". An example would be: setWiat(10) | while true and getWait(): do something().
     return seconds() < time
 
-def onBlackFront():
-    return w.analog(c.FRONT_TOPHAT) > c.frontLineFollowerGrey
-
-
-def onBlackBack():
-    return w.analog(c.REAR_TOPHAT) > c.frontLineFollowerGrey
-
 
 def onBlackFront():
-    return w.analog(c.FRONT_TOPHAT) > c.frontLineFollowerGrey
+    return w.analog(c.FRONT_TOPHAT) > c.onBlack
 
-def onBlackBack():
-    return w.analog(c.REAR_TOPHAT) > c.frontLineFollowerGrey
 
 def timedLineFollowLeft(time):
     sec = seconds() + time
@@ -181,4 +172,3 @@ def crossBlackBack():
     while onBlackBack():  # wait for white
         pass
     ao()
-
