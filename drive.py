@@ -1,11 +1,12 @@
 #!/usr/bin/python
 from wallaby import *
 import utils as u
+import constants as c
 
 
 def driveTimed(left, right, time):
-    motor(0, left)
-    motor(3, right)
+    motor(c.LMOTOR, left)
+    motor(c.RMOTOR, right)
     msleep(time)
     ao()
 
@@ -13,8 +14,8 @@ def sleep(time):
     driveTimed(0, 0, time)
 
 def drive(left, right):
-    motor(0,left)
-    motor(3,right)
+    motor(c.LMOTOR,left)
+    motor(c.RMOTOR,right)
 
 def lineFollowLeft(time):
     sec = seconds()

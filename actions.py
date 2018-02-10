@@ -14,7 +14,7 @@ def init():
 
 def driveOutStartBox():
     #drives out of start box to pom
-    mpp.drive_speed(11, 70)
+    mpp.drive_speed(9.5, 70)
 
 def sortPoms():
     #moves arm down
@@ -25,12 +25,18 @@ def sortPoms():
     msleep(100)
     u.move_servo(c.servoClaw, c.clawCrossed)
     msleep(1000)
+    u.move_servo(c.servoClaw, c.clawMiddle)
 
 def turnAndDrive():
     #drives forward to be centered on black line
-    mpp.drive_speed(16.75, 40)#4.4, 40
-    mpp.pivot_right(-125, 40)#127 degrees
-    mpp.drive_speed(4.5, 40)#was 4.5
+    mpp.drive_speed(22, 40)#4.4, 40
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.drive_timed(-17,-100,1.85)
+    u.move_servo(c.servoClaw, c.clawCrossed)
+
+    #mpp.pivot_right(-7, 40)#127 degrees
+    #mpp.drive_speed(5.5, 40)#was 4.5
+    x.lineFollowLeft(1.2)
     ao() #alloff
     msleep(2000)
 
@@ -39,14 +45,20 @@ def sortSecondPile():
     msleep(100)
     u.move_servo(c.servoClaw, c.clawCrossed)
     msleep(100)
+    u.move_servo(c.servoClaw, c.clawMiddle)
+    msleep(100)
+    mpp.drive_speed(3.75, 40)
+    '''u.move_servo(c.servoClaw, c.clawCrossed)
+    msleep(100)
     u.move_servo(c.servoClaw, c.clawOpen)
     msleep(1000)
+    u.move_servo(c.servoClaw, c.clawMiddle)
+    msleep(100)'''
 
 def driveToNextPoms():
-    u.move_servo(c.servoClaw, c.clawMiddle)
-    x.lineFollowLeft(2) #mpp.drive_speed(7, 40)
+    x.lineFollowLeft(1.75) #mpp.drive_speed(7, 40)
     u.move_servo(c.servoClaw, c.clawOpen)
-    x.lineFollowLeft(1.25)
+    x.lineFollowLeft(1)
     '''
     while not u.onBlackFront():
         mpp._drive(75,50)
@@ -60,9 +72,12 @@ def sortThirdPile():
     msleep(100)
     u.move_servo(c.servoClaw, c.clawCrossed)
     msleep(1000)
+    u.move_servo(c.servoClaw, c.clawMiddle)
 
 def driveToDeposit():
-    x.lineFollowLeft(4.5)
+    x.lineFollowLeft(2.5)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    x.lineFollowLeft(2)
     mpp.rotate(-125, 60)
     mpp.drive_speed(10, 40)
 
