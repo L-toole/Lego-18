@@ -14,12 +14,8 @@ def main():
     act.sortSecondPile()
     act.driveToNextPoms()
     act.sortThirdPile()
-    act.driveToFourthPile()
-    act.sortPoms()
-    u.DEBUG()
-    act.driveToNextPoms()
-    act.driveToNextPoms()
     act.driveToDeposit()
+    u.DEBUG()
     act.goToAquifer()
     u.DEBUG()
 
