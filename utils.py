@@ -31,16 +31,16 @@ def waitForButton():
 def DEBUG():
     freeze(c.LMOTOR)
     freeze(c.RMOTOR)
-    ao()
     print('Program stop for DEBUG\nSeconds: ', seconds() - c.startTime)
+    ao()
     exit(0)
 
 
 def DEBUGwithWait():
     freeze(c.LMOTOR)
     freeze(c.RMOTOR)
-    ao()
     print ('Program stop for DEBUG\nSeconds: ', seconds() - c.startTime)
+    ao()
     msleep(5000)
 
 # Servo Constants
