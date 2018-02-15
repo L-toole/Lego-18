@@ -14,23 +14,33 @@ def init():
 
 def driveOutStartBox():
     #drives out of start box to pom
-    mpp.drive_speed(9.6, 70)
+    mpp.drive_speed(7, 60)   #9.4
+
 
 def redOnTop():
     #sorts pom pile with red on top
     #moves arm down
     #closes claw
-    u.move_servo(c.servoClaw, c.clawHalfOpen)
-    msleep(100)
     u.move_servo(c.servoClaw, c.clawMiddle)
+    u.move_servo(c.servoClaw, c.clawHalfOpen)
 
 def turnAndDrive():
     #drives forward to be centered on black line
-    x.driveTimed(60, 60, 1500)#4.4, 40
+    x.driveTimed(30, 30, 1800)#4.4, 40  #60, 60, 1500
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.pivot_right(-77, 40)
+    u.move_servo(c.servoClaw, c.clawHalfOpen)
+    mpp.drive_speed(5.3, 50)
+    u.move_servo(c.servoClaw, c.clawMiddle)
+    mpp.drive_speed(3, 50)
+    mpp.pivot_left(48, 40)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    u.DEBUG()
     u.move_servo(c.servoClaw, c.clawCrossed)
-    x.driveTimed(30,-70, 1300)
+    x.driveTimed(30,-40, 1300)   #30, -70
     msleep(200)
     x.driveTimed(70,70, 1000)
+    mpp.drive_speed(9, 65)
     u.DEBUG()
     #mpp.pivot_right(-7, 40)#127 degrees
     #mpp.drive_speed(5.5, 40)#was 4.5
