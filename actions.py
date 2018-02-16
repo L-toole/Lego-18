@@ -22,24 +22,23 @@ def redOnTop():
     #moves arm down
     #closes claw
     u.move_servo(c.servoClaw, c.clawMiddle)
-    u.move_servo(c.servoClaw, c.clawHalfOpen)
+    u.move_servo(c.servoClaw, c.clawRedHalfOpen)
 
 def turnAndDrive():
     #drives forward to be centered on black line
     x.driveTimed(30, 30, 1800)#4.4, 40  #60, 60, 1500
     u.move_servo(c.servoClaw, c.clawOpen)
     mpp.pivot_right(-77, 40)
-    u.move_servo(c.servoClaw, c.clawHalfOpen)
+    u.move_servo(c.servoClaw, c.clawGreenHalfOpen)
     mpp.drive_speed(5.3, 50)
     u.move_servo(c.servoClaw, c.clawMiddle)
     mpp.drive_speed(3, 50)
     mpp.pivot_left(48, 40)
     u.move_servo(c.servoClaw, c.clawOpen)
-    u.DEBUG()
     u.move_servo(c.servoClaw, c.clawCrossed)
-    x.driveTimed(30,-40, 1300)   #30, -70
-    msleep(200)
-    x.driveTimed(70,70, 1000)
+    u.move_servo(c.servoClaw, c.clawMiddle)
+    mpp.drive_speed(4, 50)
+    u.DEBUG()
     mpp.drive_speed(9, 65)
     u.DEBUG()
     #mpp.pivot_right(-7, 40)#127 degrees

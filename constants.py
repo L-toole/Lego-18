@@ -18,10 +18,11 @@ servoClaw = 0
 
 
 
-clawCrossed = 2047#was1900
+clawCrossed = 2047
 clawOpen = 0
-clawMiddle = 650#was900
-clawHalfOpen = 1448
+clawMiddle = 650
+clawRedHalfOpen = 1200
+clawGreenHalfOpen = 1450
 clawHalfCrossed = 640
 
 #Tophat

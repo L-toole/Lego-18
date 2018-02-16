@@ -9,7 +9,7 @@ import drive as d
 import motorsPlusPlus as mpp
 
 def main():
-    print ("hello People")
+    print ("hello Meeples")
     act.init()
     act.driveOutStartBox()
     act.redOnTop()
@@ -18,7 +18,6 @@ def main():
     act.driveToNextPoms()
     u.DEBUG()
     act.redOnTop()
-    u.DEBUG()
     act.driveToDeposit()
     act.goToAquifer()
     u.DEBUG()
