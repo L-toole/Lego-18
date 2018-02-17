@@ -3,7 +3,9 @@ import utils as u
 import constants as c
 from wallaby import *
 import motorsPlusPlus as mpp
+import camera as p
 
+colorOrder = []
 
 def init():
     #starting positions
@@ -20,6 +22,16 @@ def driveOutStartBox():
 def redOnTop():
     u.move_servo(c.servoClaw, c.clawMiddle)
     u.move_servo(c.servoClaw, c.clawRedHalfOpen)
+
+#Code assumes that you are already lined up with the first block
+#You may need to change the length of the line follow based on position
+def seeBlocks():
+    p.cameraInit()
+    p.checkColor(colorOrder)
+    x.line_follow_forward(21)
+    p.checkColor(colorOrder)
+    p.determineOrder(colorOrder)
+
 
 def turnAndDrive():
     x.driveTimed(30, 30, 1800)#4.4, 40  #60, 60, 1500
