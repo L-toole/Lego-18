@@ -16,7 +16,6 @@ def main():
     act.turnAndDrive()
     act.greenOnTop()
     act.driveToNextPoms()
-    u.DEBUG()
     act.redOnTop()
     act.driveToDeposit()
     act.goToAquifer()

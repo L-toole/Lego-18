@@ -18,53 +18,42 @@ def driveOutStartBox():
 
 
 def redOnTop():
-    #sorts pom pile with red on top
-    #moves arm down
-    #closes claw
     u.move_servo(c.servoClaw, c.clawMiddle)
     u.move_servo(c.servoClaw, c.clawRedHalfOpen)
 
 def turnAndDrive():
-    #drives forward to be centered on black line
     x.driveTimed(30, 30, 1800)#4.4, 40  #60, 60, 1500
-    u.move_servo(c.servoClaw, c.clawOpen)
+    u.move_servo(c.servoClaw, c.clawOpen, 20)
     mpp.pivot_right(-77, 40)
-    u.move_servo(c.servoClaw, c.clawGreenHalfOpen)
+    u.move_servo(c.servoClaw, c.clawGreenHalfOpen, 20)
     mpp.drive_speed(5.3, 50)
     u.move_servo(c.servoClaw, c.clawMiddle)
     mpp.drive_speed(3, 50)
-    mpp.pivot_left(48, 40)
-    u.move_servo(c.servoClaw, c.clawOpen)
-    u.move_servo(c.servoClaw, c.clawCrossed)
-    u.move_servo(c.servoClaw, c.clawMiddle)
+    mpp.pivot_left(33, 40)
+    u.move_servo(c.servoClaw, c.clawOpen, 20)
+    u.move_servo(c.servoClaw, c.clawCrossed, 20)
+    u.move_servo(c.servoClaw, c.clawMiddle, 20)
     mpp.drive_speed(4, 50)
+    mpp.drive_speed(4, 60)
+    u.move_servo(c.servoClaw, c.clawRedHalfOpen)
+    u.move_servo(c.servoClaw, c.clawStacked)
+    mpp.drive_speed(3, 60)
     u.DEBUG()
-    mpp.drive_speed(9, 65)
-    u.DEBUG()
-    #mpp.pivot_right(-7, 40)#127 degrees
-    #mpp.drive_speed(5.5, 40)#was 4.5
-    #x.lineFollowLeft(1.2)
-    #ao() #alloff
-    #msleep(2000)
 
 def greenOnTop():
     #sorts pom pile with green on top
     u.move_servo(c.servoClaw, c.clawHalfOpen)
     msleep(100)
-    '''u.move_servo(c.servoClaw, c.clawCrossed)
+    '''u.move_servo(c.servoClaw, c.clawCrossed, 20)
     msleep(100)
-    u.move_servo(c.servoClaw, c.clawOpen)
+    u.move_servo(c.servoClaw, c.clawOpen, 20)
     msleep(1000)
-    u.move_servo(c.servoClaw, c.clawMiddle)
+    u.move_servo(c.servoClaw, c.clawMiddle, 20)
     msleep(100)'''
 
 def driveToNextPoms():
-    u.move_servo(c.servoClaw, c.clawHalfCrossed)
-    msleep(100)
-    u.move_servo(c.servoClaw, c.clawHalfOpen)
-    x.driveTimed(70, 70, 2000)
-    u.move_servo(c.servoClaw,c.clawOpen)
-    mpp.drive_timed(90, 18, 1.5)
+    mpp.drive_timed(70, 70, 2)
+    mpp.drive_timed(90, 18, 1)
     msleep(300)
     u.move_servo(c.servoClaw, c.clawHalfOpen)
     '''x.lineFollowLeft(1.75) #mpp.drive_speed(7, 40)

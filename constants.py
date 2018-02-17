@@ -24,6 +24,7 @@ clawMiddle = 650
 clawRedHalfOpen = 1200
 clawGreenHalfOpen = 1450
 clawHalfCrossed = 640
+clawStacked = 1000
 
 #Tophat
 FRONT_TOPHAT = 0
