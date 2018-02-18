@@ -24,14 +24,15 @@ YELLOW = 3
 
 #color tolerances
 COLOR_PROXIMITY=20
-ORANGE_AREA=1500
-RGY_AREA=300
+ORANGE_AREA=500
+RGY_AREA=100
 
 #Claw position values
 clawCrossed = 2047
 clawOpen = 0
 clawMiddle = 650
-clawRedHalfOpen = 1200
+clawRedHalfOpen = 1300
+clawAlmostOpen= 500
 clawGreenHalfOpen = 1450
 clawHalfCrossed = 640
 clawStacked = 1000

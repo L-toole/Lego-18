@@ -6,16 +6,16 @@ import actions as a
 
 def cameraInit():
     #Initializes/Opens up camera
-    print "Running!"
+    print("Running!")
     if camera_open_black() == 0:
-        print "camera does not open"
+        print("camera does not open")
         exit(0)
     else:
-        print "camera open"
+        print("camera open")
     if camera_update() == 0:
-        print "no update"
+        print("no update")
     else:
-        print "update"
+        print("update")
     i=0
     while(i < 5):
         camera_update()
@@ -39,12 +39,24 @@ def getCenterColorAvg():
         camera_update()
         msleep(50)
         if get_object_count(c.ORANGE) > 0 and get_object_area(c.ORANGE,0) > c.ORANGE_AREA:
+            print("color proximity:" + str(colorProximity(c.RED)))
+            print("get obj area:" + str(get_object_area(c.RED,0)))
+            print("get obj count:" + str((get_object_count(c.RED) > 0)))
+
             if get_object_count(c.YELLOW) > 0 and get_object_area(c.YELLOW,0) > c.RGY_AREA and colorProximity(c.YELLOW):
                 yellowCount += 1
             if (get_object_count(c.GREEN) > 0) and get_object_area(c.GREEN,0) > c.RGY_AREA and colorProximity(c.GREEN):
                 greenCount += 1
             if (get_object_count(c.RED) > 0) and get_object_area(c.RED,0) > c.RGY_AREA and colorProximity(c.RED):
                 redCount += 1
+        else:
+            print("I see approximately no orange")
+    print("colors are")
+    print(redCount)
+    print(greenCount)
+    print(yellowCount)
+    print("what it returns is:")
+
     if max(redCount, greenCount, yellowCount)==0:
         return 0
     elif max(redCount, greenCount, yellowCount) == greenCount:
@@ -62,11 +74,11 @@ def colorProximity(color):
 
 def colorValue(color):
     #Prints data (x,y,area) of the selected color channel
-    print colorDefine(color)
-    print "objects=" + str(get_object_count(color)),
-    print ", x=" + str(get_object_center_x(color, 0)),
-    print ", y=" + str(get_object_center_y(color, 0)),
-    print ", area=" + str(get_object_area(color, 0))
+    print(colorDefine(color))
+    print("objects=" + str(get_object_count(color))),
+    print(", x=" + str(get_object_center_x(color, 0))),
+    print(", y=" + str(get_object_center_y(color, 0))),
+    print(", area=" + str(get_object_area(color, 0)))
 
 def colorDefine(color):
     #Converts channel number to color
@@ -93,20 +105,21 @@ def determineOrder(list):
         x.line_follow_forward(23)
         checkColor(list)
         n = list.index(c.ORANGE)
-        print n
+        print(n)
         if c.RED in list and c.GREEN in list:
             list[n] = c.YELLOW
         elif c.GREEN in list and c.YELLOW in list:
             list[n] = c.RED
         elif c.RED in list and c.YELLOW in list:
             list[n] = c.GREEN
-        print list[n]
-    print "final order: ",
-    print [colorDefine(list[0]), colorDefine(list[1]), colorDefine(list[2])]
+        print(list[n])
+    print("final order: "),
+    print([colorDefine(list[0]), colorDefine(list[1]), colorDefine(list[2])])
 
 
 def checkColor(list):
     #Finds color and adds it to the list
     s = getCenterColorAvg()
     list.append(s)
-    print list[-1]
+    print(list[-1])
+    return list[-1]

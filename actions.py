@@ -11,8 +11,11 @@ def init():
     #starting positions
     #START WITH CLAW UP/OPEN!!!!!!!!!
     enable_servos()
+    p.cameraInit()
     set_servo_position(c.servoClaw, c.clawOpen)
     msleep(100)
+    u.waitForButton()
+
 
 def driveOutStartBox():
     #drives out of start box to pom
@@ -26,31 +29,40 @@ def redOnTop():
 #Code assumes that you are already lined up with the first block
 #You may need to change the length of the line follow based on position
 def seeBlocks():
-    p.cameraInit()
-    p.checkColor(colorOrder)
-    x.line_follow_forward(21)
-    p.checkColor(colorOrder)
-    p.determineOrder(colorOrder)
+    s = p.checkColor(colorOrder)
+    if s == c.RED:
+        print("Found Red...")
+        mpp.pivot_left(100, 70)
+    # do something here
+    # p.checkColor(colorOrder)
+    # p.determineOrder(colorOrder)
 
 
-def turnAndDrive():
-    x.driveTimed(30, 30, 1800)#4.4, 40  #60, 60, 1500
+def turnAndSort2():
+    x.driveTimed(40, 40, 1800)#4.4, 40  #60, 60, 1500
     u.move_servo(c.servoClaw, c.clawOpen, 20)
-    mpp.pivot_right(-77, 40)
+    mpp.pivot_right(-85, 40) #-80, 40
     u.move_servo(c.servoClaw, c.clawGreenHalfOpen, 20)
     mpp.drive_speed(5.3, 50)
     u.move_servo(c.servoClaw, c.clawMiddle)
     mpp.drive_speed(3, 50)
-    mpp.pivot_left(33, 40)
+    mpp.pivot_left(30, 40)
     u.move_servo(c.servoClaw, c.clawOpen, 20)
     u.move_servo(c.servoClaw, c.clawCrossed, 20)
     u.move_servo(c.servoClaw, c.clawMiddle, 20)
-    mpp.drive_speed(4, 50)
-    mpp.drive_speed(4, 60)
-    u.move_servo(c.servoClaw, c.clawRedHalfOpen)
+
+def turnAndSort3():
+    u.move_servo(c.servoClaw, c.clawAlmostOpen)
+    mpp.drive_speed(9, 55)
+    u.move_servo(c.servoClaw, c.clawGreenHalfOpen)
+    u.move_servo(c.servoClaw, c.clawMiddle)
     u.move_servo(c.servoClaw, c.clawStacked)
-    mpp.drive_speed(3, 60)
-    u.DEBUG()
+    mpp.drive_speed(6, 60)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    u.move_servo(c.servoClaw, c.clawCrossed)
+    x.driveTimed(18, 0, 1000)
+
+
 
 def greenOnTop():
     #sorts pom pile with green on top
@@ -65,7 +77,7 @@ def greenOnTop():
 
 def driveToNextPoms():
     mpp.drive_timed(70, 70, 2)
-    mpp.drive_timed(90, 18, 1)
+    mpp.drive_timed(90, 15, 1.1) #1
     msleep(300)
     u.move_servo(c.servoClaw, c.clawHalfOpen)
     '''x.lineFollowLeft(1.75) #mpp.drive_speed(7, 40)

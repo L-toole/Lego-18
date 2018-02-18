@@ -20,7 +20,7 @@ import drive as d
 import wallaby as w
 
 def waitForButton():
-    print("Press Button...")
+    print("Press Right Button...")
     while not digital(c.RIGHT_BUTTON):
         pass
     msleep(1)

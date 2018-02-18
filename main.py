@@ -9,11 +9,14 @@ import drive as d
 import motorsPlusPlus as mpp
 
 def main():
-    print ("hello Meeples")
+    print ("Running")
     act.init()
     act.driveOutStartBox()
     act.redOnTop()
-    act.turnAndDrive()
+    act.turnAndSort2()
+    act.turnAndSort3()
+    act.seeBlocks()
+    u.DEBUG()
     act.greenOnTop()
     act.driveToNextPoms()
     act.redOnTop()
