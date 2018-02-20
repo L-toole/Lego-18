@@ -26,13 +26,29 @@ def redOnTop():
     u.move_servo(c.servoClaw, c.clawMiddle)
     u.move_servo(c.servoClaw, c.clawRedHalfOpen)
 
+def dropRedNear():
+    print("Found Red...")
+    mpp.pivot_left(85, 50)
+    mpp.drive_speed(10, 60)
+    mpp.rotate(-20,50)
+    mpp.drive_speed(2,60)
+    mpp.drive_speed(6,-60)
+    mpp.rotate(-25,50)
+    mpp.drive_speed(2,60)
+
 #Code assumes that you are already lined up with the first block
 #You may need to change the length of the line follow based on position
 def seeBlocks():
     s = p.checkColor(colorOrder)
     if s == c.RED:
-        print("Found Red...")
-        mpp.pivot_left(100, 70)
+        dropRedNear()
+    if s == c.YELLOW:
+        print("Found yellow...")
+        mpp.pivot_left(100, 50)
+    if s == c.GREEN:
+        print("Found green...")
+        mpp.pivot_left(100, 50)
+
     # do something here
     # p.checkColor(colorOrder)
     # p.determineOrder(colorOrder)

@@ -39,6 +39,7 @@ def getCenterColorAvg():
         camera_update()
         msleep(50)
         if get_object_count(c.ORANGE) > 0 and get_object_area(c.ORANGE,0) > c.ORANGE_AREA:
+            print(" ")
             print("color proximity:" + str(colorProximity(c.RED)))
             print("get obj area:" + str(get_object_area(c.RED,0)))
             print("get obj count:" + str((get_object_count(c.RED) > 0)))
@@ -51,7 +52,7 @@ def getCenterColorAvg():
                 redCount += 1
         else:
             print("I see approximately no orange")
-    print("colors are")
+    print("Colors are:")
     print(redCount)
     print(greenCount)
     print(yellowCount)
@@ -61,7 +62,7 @@ def getCenterColorAvg():
         return 0
     elif max(redCount, greenCount, yellowCount) == greenCount:
         return c.GREEN
-    elif max(redCount, greenCount, yellowCount)==redCount:
+    elif max(redCount, greenCount, yellowCount) == redCount:
         return c.RED
     elif max(redCount, greenCount, yellowCount) == yellowCount:
         return c.YELLOW
