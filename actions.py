@@ -16,43 +16,24 @@ def init():
     msleep(100)
     u.waitForButton()
 
-
 def driveOutStartBox():
     #drives out of start box to pom
     mpp.drive_speed(7, 60)   #9.4
-
 
 def redOnTop():
     u.move_servo(c.servoClaw, c.clawMiddle)
     u.move_servo(c.servoClaw, c.clawRedHalfOpen)
 
-def dropRedNear():
-    print("Found Red...")
-    mpp.pivot_left(85, 50)
-    mpp.drive_speed(10, 60)
-    mpp.rotate(-20,50)
-    mpp.drive_speed(2,60)
-    mpp.drive_speed(6,-60)
-    mpp.rotate(-25,50)
-    mpp.drive_speed(2,60)
-
-#Code assumes that you are already lined up with the first block
-#You may need to change the length of the line follow based on position
-def seeBlocks():
-    s = p.checkColor(colorOrder)
-    if s == c.RED:
-        dropRedNear()
-    if s == c.YELLOW:
-        print("Found yellow...")
-        mpp.pivot_left(100, 50)
-    if s == c.GREEN:
-        print("Found green...")
-        mpp.pivot_left(100, 50)
-
-    # do something here
-    # p.checkColor(colorOrder)
-    # p.determineOrder(colorOrder)
-
+def greenOnTop():
+    # sorts pom pile with green on top
+    u.move_servo(c.servoClaw, c.clawHalfOpen)
+    msleep(100)
+    '''u.move_servo(c.servoClaw, c.clawCrossed, 20)
+    msleep(100)
+    u.move_servo(c.servoClaw, c.clawOpen, 20)
+    msleep(1000)
+    u.move_servo(c.servoClaw, c.clawMiddle, 20)
+    msleep(100)'''
 
 def turnAndSort2():
     x.driveTimed(40, 40, 1800)#4.4, 40  #60, 60, 1500
@@ -79,17 +60,24 @@ def turnAndSort3():
     x.driveTimed(18, 0, 1000)
 
 
+#Code assumes that you are already lined up with the first block
+#You may need to change the length of the line follow based on position
+def seeBlocks():
+    s = p.checkColor(colorOrder)
+    if s == c.RED:
+        dropRedNear()
+    if s == c.YELLOW:
+        print("Found yellow...")
+        mpp.pivot_left(100, 50)
+    if s == c.GREEN:
+        dropGreenNear()
 
-def greenOnTop():
-    #sorts pom pile with green on top
-    u.move_servo(c.servoClaw, c.clawHalfOpen)
-    msleep(100)
-    '''u.move_servo(c.servoClaw, c.clawCrossed, 20)
-    msleep(100)
-    u.move_servo(c.servoClaw, c.clawOpen, 20)
-    msleep(1000)
-    u.move_servo(c.servoClaw, c.clawMiddle, 20)
-    msleep(100)'''
+
+    # do something here
+    # p.checkColor(colorOrder)
+    # p.determineOrder(colorOrder)
+
+
 
 def driveToNextPoms():
     mpp.drive_timed(70, 70, 2)
@@ -118,3 +106,28 @@ def goToAquifer():
         mpp._drive(60, 60)
     mpp.pivot_left(90, 40)
     x.lineFollowRight(2.5)
+
+
+def dropRedNear():
+    print("Found Red...")
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.pivot_left(85, 50)
+    u.move_servo(c.servoClaw, c.clawCrossed)
+    mpp.drive_speed(10, 60)
+    mpp.rotate(-20,50)
+    mpp.drive_speed(2,60)
+    mpp.drive_speed(6,-60)
+    mpp.rotate(-27,50)
+    mpp.drive_speed(2,60)
+
+def dropGreenNear():
+    print("Found Green...")
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.pivot_left(123, 50)
+    mpp.drive_speed(9, 60)
+    mpp.rotate(-10, 50)
+    mpp.drive_speed(1, 60)
+    mpp.drive_speed(6, -60)
+    #mpp.rotate(27, 50)
+    mpp.drive_speed(2, 60)
+

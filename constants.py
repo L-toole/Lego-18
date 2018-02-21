@@ -28,14 +28,14 @@ ORANGE_AREA=500
 RGY_AREA=100
 
 #Claw position values
-clawCrossed = 2047
 clawOpen = 0
-clawMiddle = 650
-clawRedHalfOpen = 1300
 clawAlmostOpen= 500
-clawGreenHalfOpen = 1450
 clawHalfCrossed = 640
+clawMiddle = 650
 clawStacked = 1000
+clawRedHalfOpen = 1300
+clawGreenHalfOpen = 1450
+clawCrossed = 2047
 
 #Tophat
 FRONT_TOPHAT = 0
