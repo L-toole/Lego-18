@@ -10,6 +10,7 @@ import motorsPlusPlus as mpp
 
 def main():
     print ("Running")
+    act.selfTest()
     act.init()
     act.driveOutStartBox()
     act.redOnTop()
@@ -23,6 +24,7 @@ def main():
     act.driveToDeposit()
     act.goToAquifer()
     u.DEBUG()
+
 
 if __name__ == "__main__":
     sys.stdout = os.fdopen(sys.stdout.fileno(), "w", 0)

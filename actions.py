@@ -67,8 +67,7 @@ def seeBlocks():
     if s == c.RED:
         dropRedNear()
     if s == c.YELLOW:
-        print("Found yellow...")
-        mpp.pivot_left(100, 50)
+        seeYellow()
     if s == c.GREEN:
         dropGreenNear()
 
@@ -127,7 +126,27 @@ def dropGreenNear():
     mpp.drive_speed(9, 60)
     mpp.rotate(-10, 50)
     mpp.drive_speed(1, 60)
-    mpp.drive_speed(6, -60)
+    mpp.drive_speed(12, -60)
+    u.move_servo(c.servoClaw, c.clawCrossed)
     #mpp.rotate(27, 50)
-    mpp.drive_speed(2, 60)
+    mpp.drive_speed(8.7, 60)
 
+def seeYellow():
+    mpp.drive_speed(24,50)
+    s = p.checkColor(colorOrder)
+    if s == c.RED:
+        dropRedNear()
+    if s == c.YELLOW:
+        print("Found yellow...")
+        mpp.pivot_left(50, 50)
+    if s == c.GREEN:
+        dropGreenNear()
+
+def selfTest():
+    mpp.drive_speed(4,40)
+    mpp.drive_speed(4,-40)
+    mpp.rotate(20,30)
+    mpp.rotate(-20,30)
+    enable_servos()
+    u.move_servo(c.servoClaw, c.clawOpen)
+    u.move_servo(c.servoClaw, c.clawCrossed)
