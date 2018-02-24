@@ -17,7 +17,6 @@ def main():
     act.turnAndSort2()
     act.turnAndSort3()
     act.seeBlocks()
-    act.backOutbox()
     u.DEBUG()
     act.greenOnTop()
     act.driveToNextPoms()

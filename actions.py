@@ -69,7 +69,7 @@ def seeBlocks():
     if s == c.YELLOW:
         seeYellow()
     if s == c.GREEN:
-        dropGreenNear()
+        dropGreenNearAndBackUp()
 
 
     # do something here
@@ -110,29 +110,41 @@ def goToAquifer():
 def dropRedNear():
     print("Found Red...")
     u.move_servo(c.servoClaw, c.clawOpen)
-    mpp.pivot_left(85, 50)
+    mpp.pivot_left(80, 30) #75
     u.move_servo(c.servoClaw, c.clawCrossed)
-    mpp.drive_speed(10, 60)
-    mpp.rotate(-20,50)
-    mpp.drive_speed(1.2,60)
-    mpp.drive_speed(5.2,-60)
-    mpp.rotate(-27,50)
-    mpp.drive_speed(2,60)
-    mpp.drive_till_black(30,30)
+    mpp.drive_speed(10.7, 60) #10,60
+    #mpp.rotate(-10, 30) #20,50
+    mpp.drive_speed(8,-40)
+    mpp.rotate(25, -40)
+    mpp.drive_speed(4, 40)
+    mpp.rotate(10,-30)
+    mpp.drive_speed(2, 30)
+    mpp.drive_speed(9, -40)
+    mpp.drive_till_black(-30,-30 )
+    mpp.rotate(115, 30)
 
 
-def dropGreenNear():
+def dropGreenNearAndBackUp():
     print("Found Green...")
     u.move_servo(c.servoClaw, c.clawOpen)
     mpp.pivot_left(123, 50)
     mpp.drive_speed(7.5, 60)   #8
-    mpp.rotate(-10, 30)
+    mpp.rotate(-10, 30)  #-10, 30
     mpp.drive_speed(1, 60)
     mpp.drive_speed(12, -60)
     u.move_servo(c.servoClaw, c.clawCrossed)
     #mpp.rotate(27, 50)
     mpp.drive_speed(8, 60)
     mpp.drive_till_black(30,30)
+    print("Backing up")
+    msleep(2000)
+    mpp.drive_speed(-5.5, 40)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    msleep(500)
+    mpp.drive_speed(-7, 60)
+    mpp.drive_till_black(-30, -30)
+
+
 
 def backOutbox():
     print("Backing up")
