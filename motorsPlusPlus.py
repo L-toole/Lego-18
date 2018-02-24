@@ -12,6 +12,7 @@ These values refer to prime/clone status, the left motor's port, and the right m
 from constants import isClone
 from constants import LMOTOR
 from constants import RMOTOR
+from constants import *
 
 from math import pi
 
@@ -23,6 +24,7 @@ from wallaby import get_servo_position
 from wallaby import motor
 from wallaby import msleep
 from wallaby import seconds
+from wallaby import analog
 from wallaby import set_servo_position
 
 # Drive Constants
@@ -159,8 +161,7 @@ def drive_timed(lmotor, rmotor, time):
     ao()
 
 
-def drive_condition(lmotor, rmotor, testFunction,
-                    state=True):  # Drives while "testFunction" returns "state" | an example would be: x.drive_condition(50, 50, x.getWait)
+def drive_condition(lmotor, rmotor, testFunction, state=True):  # Drives while "testFunction" returns "state" | an example would be: x.drive_condition(50, 50, x.getWait)
     print ("driving under condition")
     _clear_ticks()
     if lmotor == 0 or rmotor == 0:
@@ -231,3 +232,9 @@ def pivot_left(deg, speed):  # Pivots by moving the left wheel.
     while _left_ticks() <= ticks:
         pass
     freeze_motors()
+
+def drive_till_black(left, right):
+    while analog(FRONT_TOPHAT) < onBlack:
+        _drive(left, right)
+    freeze_motors()
+

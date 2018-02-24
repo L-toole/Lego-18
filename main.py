@@ -17,13 +17,13 @@ def main():
     act.turnAndSort2()
     act.turnAndSort3()
     act.seeBlocks()
+    act.backOutbox()
     u.DEBUG()
     act.greenOnTop()
     act.driveToNextPoms()
     act.redOnTop()
     act.driveToDeposit()
     act.goToAquifer()
-    u.DEBUG()
 
 
 if __name__ == "__main__":

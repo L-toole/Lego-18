@@ -26,7 +26,7 @@ def redOnTop():
 
 def greenOnTop():
     # sorts pom pile with green on top
-    u.move_servo(c.servoClaw, c.clawHalfOpen)
+    u.move_servo(c.servoClaw, c.clawGreenHalfOpen)
     msleep(100)
     '''u.move_servo(c.servoClaw, c.clawCrossed, 20)
     msleep(100)
@@ -38,7 +38,7 @@ def greenOnTop():
 def turnAndSort2():
     x.driveTimed(40, 40, 1800)#4.4, 40  #60, 60, 1500
     u.move_servo(c.servoClaw, c.clawOpen, 20)
-    mpp.pivot_right(-85, 40) #-80, 40
+    mpp.pivot_right(-87, 40) #-80, 40
     u.move_servo(c.servoClaw, c.clawGreenHalfOpen, 20)
     mpp.drive_speed(5.3, 50)
     u.move_servo(c.servoClaw, c.clawMiddle)
@@ -114,22 +114,36 @@ def dropRedNear():
     u.move_servo(c.servoClaw, c.clawCrossed)
     mpp.drive_speed(10, 60)
     mpp.rotate(-20,50)
-    mpp.drive_speed(2,60)
-    mpp.drive_speed(6,-60)
+    mpp.drive_speed(1.2,60)
+    mpp.drive_speed(5.2,-60)
     mpp.rotate(-27,50)
     mpp.drive_speed(2,60)
+    mpp.drive_till_black(30,30)
+
 
 def dropGreenNear():
     print("Found Green...")
     u.move_servo(c.servoClaw, c.clawOpen)
     mpp.pivot_left(123, 50)
-    mpp.drive_speed(9, 60)
-    mpp.rotate(-10, 50)
+    mpp.drive_speed(7.5, 60)   #8
+    mpp.rotate(-10, 30)
     mpp.drive_speed(1, 60)
     mpp.drive_speed(12, -60)
     u.move_servo(c.servoClaw, c.clawCrossed)
     #mpp.rotate(27, 50)
-    mpp.drive_speed(8.7, 60)
+    mpp.drive_speed(8, 60)
+    mpp.drive_till_black(30,30)
+
+def backOutbox():
+    print("Backing up")
+    msleep(2000)
+    mpp.drive_speed(-5, 40)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    msleep(500)
+    mpp.drive_speed(-7, 60)
+    mpp.drive_till_black(-30, -30)
+
+
 
 def seeYellow():
     mpp.drive_speed(24,50)
