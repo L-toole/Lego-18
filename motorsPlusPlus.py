@@ -9,7 +9,7 @@ It requires boolean "isClone", integer "LMOTOR", and integer "RMOTOR" from a "co
 These values refer to prime/clone status, the left motor's port, and the right motor's port respectively.
 '''
 
-from constants import isClone
+from constants import IS_CLONE
 from constants import LMOTOR
 from constants import RMOTOR
 from constants import *
@@ -28,14 +28,15 @@ from wallaby import analog
 from wallaby import set_servo_position
 
 # Drive Constants
-INCHES_TO_TICKS = 161 #169   #205 - 161     #156#127#50 cm #265
-WHEEL_DISTANCE = 5.00 #205 - 4.25  # Distance between the two wheels
+WHEEL_DISTANCE = 5.50 #205 - 4.25  # Distance between the two wheels
 
-lAdjust = 1.00 # adjust left wheel counter to fix drift
 
-if isClone:
-    INCHES_TO_TICKS = 227
-
+if IS_PRIME:
+    INCHES_TO_TICKS = 205 #larger numbers = longer drive
+    lAdjust = .98 # adjust left wheel counter to fix drift; larger number = drifts left
+else:
+    INCHES_TO_TICKS = 222
+    lAdjust = 1.04  # adjust left wheel counter to fix drift
 
 # Motor Control #
 
@@ -130,8 +131,8 @@ def drive_speed(inches, speed):  # Drives an exact distance in inches.
         if _left_ticks() > _right_ticks():
             _drive(int(speed / 1.3), speed)
     freeze_motors()
-    print (ticks)
-    print (get_motor_position_counter(RMOTOR))
+    #print (ticks)
+    #print (get_motor_position_counter(RMOTOR))
 
 
 def drive_timed(lmotor, rmotor, time):

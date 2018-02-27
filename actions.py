@@ -10,7 +10,14 @@ colorOrder = []
 def init():
     #starting positions
     #START WITH CLAW UP/OPEN!!!!!!!!!
-    enable_servos()
+    if c.IS_CLONE:
+        print("I AM CLONE")
+    elif c.IS_PRIME:
+        print("I AM PRIME")
+    else:
+        print("I DON'T KNOW WHAT I AM")
+    selfTest()
+    #enable_servos()
     p.cameraInit()
     set_servo_position(c.servoClaw, c.clawOpen)
     msleep(100)
@@ -18,7 +25,10 @@ def init():
 
 def driveOutStartBox():
     #drives out of start box to pom
-    mpp.drive_speed(7, 60)   #9.4
+    if c.IS_PRIME:
+        mpp.drive_speed(7, 60)   #9.4
+    else:
+        mpp.drive_speed(6, 60)  # 9.4
 
 def redOnTop():
     u.move_servo(c.servoClaw, c.clawMiddle)
@@ -38,11 +48,12 @@ def greenOnTop():
 def turnAndSort2():
     x.driveTimed(40, 40, 1800)#4.4, 40  #60, 60, 1500
     u.move_servo(c.servoClaw, c.clawOpen, 20)
-    mpp.pivot_right(-87, 40) #-80, 40
+    mpp.pivot_right(-60, 40) #-80, 40
     u.move_servo(c.servoClaw, c.clawGreenHalfOpen, 20)
     mpp.drive_speed(5.3, 50)
     u.move_servo(c.servoClaw, c.clawMiddle)
     mpp.drive_speed(3, 50)
+    u.DEBUG()
     mpp.pivot_left(30, 40)
     u.move_servo(c.servoClaw, c.clawOpen, 20)
     u.move_servo(c.servoClaw, c.clawCrossed, 20)
@@ -76,7 +87,16 @@ def seeBlocks():
     # p.checkColor(colorOrder)
     # p.determineOrder(colorOrder)
 
-
+    # Code assumes that you are already lined up with the middle block
+    # You may need to change the length of the line follow based on position
+def seeBlocksTwo():
+    s = p.checkColor(colorOrder)
+    if s == c.RED:
+        dropRedMiddle()
+    if s == c.YELLOW:
+        seeYellow()
+    if s == c.GREEN:
+       dropGreenMiddleAndBackUp()
 
 def driveToNextPoms():
     mpp.drive_timed(70, 70, 2)
@@ -121,7 +141,28 @@ def dropRedNear():
     mpp.drive_speed(2, 30)
     mpp.drive_speed(9, -40)
     mpp.drive_till_black(-30,-30 )
-    mpp.rotate(115, 30)
+    mpp.drive_speed(2, 50)
+    mpp.pivot_right(115, 30)
+    x.lineFollowRight(3.5)
+
+def dropRedMiddle():
+    print("Found Red...")
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.pivot_left(80, 30) #75
+    u.move_servo(c.servoClaw, c.clawCrossed)
+    mpp.drive_speed(9.7, 60) #10,60
+    #mpp.rotate(-10, 30) #20,50
+    mpp.drive_speed(8,-40)
+    mpp.rotate(25, -40)
+    mpp.drive_speed(4, 40)
+    mpp.rotate(10,-30)
+    mpp.drive_till_black(30, 30)
+    #mpp.drive_speed(2, 30)
+    mpp.drive_speed(9, -40)
+    mpp.drive_till_black(-30,-30 )
+    mpp.drive_speed(2, 50)
+    mpp.pivot_right(115, 30)
+    #x.lineFollowRight(3.5)
 
 
 def dropGreenNearAndBackUp():
@@ -143,8 +184,30 @@ def dropGreenNearAndBackUp():
     msleep(500)
     mpp.drive_speed(-7, 60)
     mpp.drive_till_black(-30, -30)
+    mpp.drive_speed(2, 50)
+    mpp.pivot_right(120, 30)
+    x.lineFollowRight(3.5)
 
-
+def dropGreenMiddleAndBackUp():
+    print("Found Green...")
+    mpp.drive_speed(2.5, 50)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.pivot_left(123, 50)
+    mpp.drive_speed(7.5, 60)   #8
+    mpp.rotate(-10, 30)  #-10, 30
+    #mpp.drive_speed(1, 60)
+    mpp.drive_speed(12, -60)
+    u.move_servo(c.servoClaw, c.clawCrossed)
+    #mpp.rotate(10, 50)
+    mpp.drive_speed(8, 60)
+    mpp.drive_till_black(30,30)
+    print("Backing up")
+    msleep(2000)
+    mpp.drive_speed(-5.5, 40)
+    #u.move_servo(c.servoClaw, c.clawOpen)
+    #msleep(500)
+    mpp.drive_speed(-7, 60)
+    mpp.drive_till_black(-30, -30)
 
 def backOutbox():
     print("Backing up")
@@ -171,8 +234,8 @@ def seeYellow():
 def selfTest():
     mpp.drive_speed(4,40)
     mpp.drive_speed(4,-40)
-    mpp.rotate(20,30)
     mpp.rotate(-20,30)
+    mpp.rotate(20,30)
     enable_servos()
     u.move_servo(c.servoClaw, c.clawOpen)
     u.move_servo(c.servoClaw, c.clawCrossed)

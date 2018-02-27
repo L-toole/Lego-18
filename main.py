@@ -10,13 +10,14 @@ import motorsPlusPlus as mpp
 
 def main():
     print ("Running")
-    act.selfTest()
     act.init()
     act.driveOutStartBox()
     act.redOnTop()
     act.turnAndSort2()
+    u.DEBUG()
     act.turnAndSort3()
     act.seeBlocks()
+    act.seeBlocksTwo()
     u.DEBUG()
     act.greenOnTop()
     act.driveToNextPoms()
