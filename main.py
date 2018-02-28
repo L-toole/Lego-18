@@ -12,18 +12,13 @@ def main():
     print ("Running")
     act.init()
     act.driveOutStartBox()
-    act.redOnTop()
-    act.turnAndSort2()
-    u.DEBUG()
-    act.turnAndSort3()
     act.seeBlocks()
+    act.driveToSecondBlock()
     act.seeBlocksTwo()
+    act.driveToCrates()
+    act.driveToFrisbees()
     u.DEBUG()
-    act.greenOnTop()
-    act.driveToNextPoms()
-    act.redOnTop()
-    act.driveToDeposit()
-    act.goToAquifer()
+
 
 
 if __name__ == "__main__":
