@@ -26,7 +26,7 @@ def init():
 def driveOutStartBox():
     #drives out of start box to pom
     if c.IS_PRIME:
-        mpp.drive_speed(22, 100)
+        mpp.drive_speed(21, 100)
     else:
         pass
 
@@ -44,7 +44,7 @@ def seeBlocks():
         print("found green")
 
 def driveToSecondBlock():
-    mpp.drive_speed(21,100)
+    mpp.drive_speed(20,100)
 
     # do something here
     # p.checkColor(colorOrder)
@@ -63,13 +63,24 @@ def seeBlocksTwo():
 
 def driveToCrates():
     mpp.pivot_right(92,50)
-    mpp.drive_speed(10,100)
+    mpp.drive_speed(11,100)
+    msleep(2000)
     mpp.drive_speed(2,-100)
 
 def driveToFrisbees():
-    mpp.pivot_right(55,50)
-    mpp.drive_speed(2,50)
-    mpp.drive_timed(40,60,5)
+    mpp.rotate(-120, 50)
+    mpp.drive_timed(-70,-70, 4)
+    mpp.drive_timed(-50,-70, 2)
+    mpp.pivot_right(-54, 50)
+    mpp.drive_speed(-3, 50)
+    msleep(500)
+
+def driveToCenter():
+    mpp.drive_speed(4, 50)
+    mpp.pivot_left(-86, 50)
+    mpp.drive_timed(80, 40, 2.5)
+    mpp.drive_speed(24.5, 50)
+    mpp.pivot_right(-43, 50)
 
 def selfTest():
     mpp.drive_speed(4,40)
