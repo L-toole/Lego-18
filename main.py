@@ -18,8 +18,7 @@ def main():
     act.driveToCrates()
     act.driveToFrisbees()
     act.driveToCenter()
-    u.DEBUG()
-
+    act.driveToYellow()
 
 
 if __name__ == "__main__":

@@ -44,6 +44,7 @@ def seeBlocks():
         print("found green")
 
 def driveToSecondBlock():
+
     mpp.drive_speed(20,100)
 
     # do something here
@@ -81,6 +82,26 @@ def driveToCenter():
     mpp.drive_timed(80, 40, 2.5)
     mpp.drive_speed(24.5, 50)
     mpp.pivot_right(-43, 50)
+
+def goYellowFirst():
+    print('Going to yellow first position.')
+
+def goYellowSecond():
+    print('Going to yellow second position.')
+    mpp.drive_speed(9, 70)
+    # Here you would use servos to drop the cube. However, that hardware does not currently exist.
+
+def goYellowThird():
+    print('Going to yellow third position.')
+
+def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
+    p.determineOrder(colorOrder)
+    if colorOrder[0] == c.YELLOW:
+        goYellowFirst()
+    elif colorOrder[1] == c.YELLOW:
+        goYellowSecond()
+    elif colorOrder[2] == c.YELLOW:
+        goYellowThird()
 
 def selfTest():
     mpp.drive_speed(4,40)

@@ -114,9 +114,7 @@ def determineOrder(list):
         elif c.RED in list and c.YELLOW in list:
             list[n] = c.GREEN
         print(list[n])
-    print("final order: "),
-    print([colorDefine(list[0]), colorDefine(list[1]), colorDefine(list[2])])
-
+    print("final order: " + str([colorDefine(list[0]), colorDefine(list[1]), colorDefine(list[2])]))
 
 def checkColor(list):
     #Finds color and adds it to the list
