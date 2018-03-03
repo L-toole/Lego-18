@@ -79,6 +79,7 @@ elif IS_CLONE_BLUE:
 else:
     # Servos
     servoArm = 0
+    servoClaw = 1
 
 
     # camera channels
@@ -102,8 +103,13 @@ else:
     # clawGreenHalfOpen = 1550
     # clawCrossed = 2047
 
-    clawUp = 730
-    clawDown = 1400
+    armUp = 760
+    armBlockLevel = 1520
+    armMid = 1450
+    armDestack = 1100
+
+    clawOpen = 750
+    clawClosed = 150
 
     # Tophat
     FRONT_TOPHAT = 0

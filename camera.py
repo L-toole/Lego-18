@@ -102,17 +102,17 @@ def determineOrder(list):
         list.append(c.RED)
     elif c.RED in list and c.YELLOW in list:
         list.append(c.GREEN)
-    elif c.ORANGE in list:
-        x.line_follow_forward(23)
-        checkColor(list)
-        n = list.index(c.ORANGE)
-        print(n)
-        if c.RED in list and c.GREEN in list:
-            list[n] = c.YELLOW
-        elif c.GREEN in list and c.YELLOW in list:
-            list[n] = c.RED
-        elif c.RED in list and c.YELLOW in list:
-            list[n] = c.GREEN
+    # elif c.ORANGE in list:
+    #     x.line_follow_forward(23)
+    #     checkColor(list)
+    #     n = list.index(c.ORANGE)
+    #     print(n)
+    #     if c.RED in list and c.GREEN in list:
+    #         list[n] = c.YELLOW
+    #     elif c.GREEN in list and c.YELLOW in list:
+    #         list[n] = c.RED
+    #     elif c.RED in list and c.YELLOW in list:
+    #         list[n] = c.GREEN
         print(list[n])
     print("final order: " + str([colorDefine(list[0]), colorDefine(list[1]), colorDefine(list[2])]))
 

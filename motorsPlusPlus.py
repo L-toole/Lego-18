@@ -41,8 +41,8 @@ elif IS_CLONE_BLUE:
     lAdjust = 1.04  # adjust left wheel counter to fix drift
 
 else: #IS_CLONE_YELLOW
-    INCHES_TO_TICKS = 161
-    lAdjust = 1.01 # adjust left wheel counter to fix drift
+    INCHES_TO_TICKS = 220
+    lAdjust = .97 # adjust left wheel counter to fix drift
 
 # Motor Control #
 

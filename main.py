@@ -9,16 +9,16 @@ import drive as d
 import motorsPlusPlus as mpp
 
 def main():
-    # print ("Running")
+    print ("Running")
     act.init()
     act.driveOutStartBox()
     act.seeBlocks()
-    # act.driveToSecondBlock()
-    # act.seeBlocksTwo()
-    # act.driveToCrates()
-    # act.driveToFrisbees()
-    # act.driveToCenter()
-    # act.driveToYellow()
+    act.driveToSecondBlock()
+    act.seeBlocksTwo()
+    act.driveToCrates()
+    act.driveToFrisbees()
+    act.driveToCenter()
+    act.driveToYellow()
 
 
 

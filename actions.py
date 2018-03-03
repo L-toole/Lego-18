@@ -19,8 +19,7 @@ def init():
     selfTest()
     enable_servos()
     p.cameraInit()
-    set_servo_position(c.servoArm, c.clawUp)
-    set_servo_position(c.servoArm, c.clawDown)
+    set_servo_position(c.servoArm, c.armUp)
     msleep(100)
     u.waitForButton()
     c.startTime = seconds()
@@ -32,7 +31,7 @@ def driveOutStartBox():
     elif c.IS_CLONE_YELLOW:
         mpp.drive_speed(18, 100)
     else:
-        mpp.drive_speed(21, 100)
+        mpp.drive_speed(22, 100)
 
 
 
@@ -50,7 +49,12 @@ def seeBlocks():
 
 def driveToSecondBlock():
 
-    mpp.drive_speed(20,100)
+    if c.IS_CLONE_BLUE:
+        mpp.drive_speed(20,100)
+    elif c.IS_CLONE_YELLOW:
+        mpp.drive_speed(25.5, 100)
+    else:
+        mpp.drive_speed(20,100)
 
     # do something here
     # p.checkColor(colorOrder)
@@ -69,24 +73,36 @@ def seeBlocksTwo():
 
 def driveToCrates():
     mpp.pivot_right(92,50)
-    mpp.drive_speed(11,100)
+    mpp.drive_speed(9, 100)
     msleep(2000)
-    mpp.drive_speed(2,-100)
+    if c.IS_CLONE_YELLOW:
+        mpp.drive_speed(-2, 45)
+    elif c.IS_CLONE_BLUE:
+        mpp.drive_speed(-2,-100)
+    else:
+        mpp.drive_speed(-2, -100)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    u.move_servo(c.servoArm, c.armBlockLevel)
+    mpp.drive_speed(2.5, 50)
+    u.move_servo(c.servoClaw, c.clawClosed)
+    msleep(600)
+    u.move_servo(c.servoArm, c.armMid, 4)
+    msleep(500)
+    mpp.drive_speed(-4, 40)
 
 def driveToFrisbees():
-    mpp.rotate(-120, 50)
-    mpp.drive_timed(-70,-70, 4)
+    mpp.rotate(-120, 30)
+    mpp.drive_timed(-50,-50, 7)
     mpp.drive_timed(-50,-70, 2)
     mpp.pivot_right(-54, 50)
-    mpp.drive_speed(-3, 50)
-    msleep(500)
+    mpp.drive_speed(-4, 50)
+    msleep(2000)
 
 def driveToCenter():
     mpp.drive_speed(4, 50)
-    mpp.pivot_left(-86, 50)
-    mpp.drive_timed(80, 40, 2.5)
+    mpp.rotate(45, 40)
     mpp.drive_speed(24.5, 50)
-    mpp.pivot_right(-43, 50)
+    mpp.pivot_right(-15, 50)
 
 def goYellowFirst():
     print('Going to yellow first position.')
@@ -97,7 +113,22 @@ def goYellowFirst():
 
 def goYellowSecond():
     print('Going to yellow second position.')
-    mpp.drive_speed(9, 70)
+    mpp.drive_speed(7, 70)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    # mpp.rotate(-10, 20)
+    u.move_servo(c.servoArm, c.armDestack, 5)
+    u.move_servo(c.servoClaw, c.clawClosed)
+    u.move_servo(c.servoArm, c.armUp)
+    mpp.drive_speed(-2, 30)
+    mpp.rotate(-40, 30)
+    mpp.drive_speed(.5, 40)
+    u.move_servo(c.servoArm, c.armBlockLevel, 5)
+    # mpp.rotate(10, 30)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.drive_speed(-5, 50)
+    mpp.rotate(180, 30)
+
+
     # Here you would use servos to drop the cube. However, that hardware does not currently exist.
 
 def goYellowThird():
@@ -119,4 +150,4 @@ def selfTest():
     mpp.rotate(20,30)
     enable_servos()
     u.move_servo(c.servoClaw, c.clawOpen)
-    u.move_servo(c.servoClaw, c.clawCrossed)
+    u.move_servo(c.servoClaw, c.clawClosed)
