@@ -10,25 +10,30 @@ colorOrder = []
 def init():
     #starting positions
     #START WITH CLAW UP/OPEN!!!!!!!!!
-    if c.IS_CLONE:
-        print("I AM CLONE")
-    elif c.IS_PRIME:
+    if c.IS_PRIME:
         print("I AM PRIME")
+    elif c.IS_CLONE_BLUE:
+        print("I AM CLONE BLUE")
     else:
-        print("I DON'T KNOW WHAT I AM")
+        print("I AM CLONE YELLOW")
     selfTest()
-    #enable_servos()
+    enable_servos()
     p.cameraInit()
-    set_servo_position(c.servoClaw, c.clawOpen)
+    set_servo_position(c.servoArm, c.clawUp)
+    set_servo_position(c.servoArm, c.clawDown)
     msleep(100)
     u.waitForButton()
+    c.startTime = seconds()
 
 def driveOutStartBox():
     #drives out of start box to pom
-    if c.IS_PRIME:
-        mpp.drive_speed(21, 100)
-    else:
+    if c.IS_CLONE_BLUE:
         pass
+    elif c.IS_CLONE_YELLOW:
+        mpp.drive_speed(18, 100)
+    else:
+        mpp.drive_speed(21, 100)
+
 
 
 
@@ -85,6 +90,10 @@ def driveToCenter():
 
 def goYellowFirst():
     print('Going to yellow first position.')
+    mpp.drive_speed(6, 50)
+    mpp.rotate(-93, 50)
+    mpp.drive_speed(12, 50)
+    mpp.rotate(93, 50)
 
 def goYellowSecond():
     print('Going to yellow second position.')

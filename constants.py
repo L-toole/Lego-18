@@ -8,11 +8,14 @@ LMOTOR = 3
 RMOTOR = 0
 
 # Digital ports
-CLONE_SWITCH = 0
+CLONE_SWITCH_YELLOW = 0
+CLONE_SWITCH_BLUE = 1
+
 RIGHT_BUTTON = 13
 
-IS_CLONE = w.digital(CLONE_SWITCH)
-IS_PRIME = not IS_CLONE
+IS_CLONE_YELLOW = w.digital(CLONE_SWITCH_YELLOW)
+IS_CLONE_BLUE = w.digital(CLONE_SWITCH_BLUE)
+IS_PRIME = not IS_CLONE_YELLOW and not IS_CLONE_BLUE
 
 
 if IS_PRIME:
@@ -43,7 +46,8 @@ if IS_PRIME:
     #Tophat
     FRONT_TOPHAT = 0
     onBlack = 3000
-else:
+
+elif IS_CLONE_BLUE:
     # Servos
     servoClaw = 0
 
@@ -67,6 +71,39 @@ else:
     clawRedHalfOpen = 1400
     clawGreenHalfOpen = 1550
     clawCrossed = 2047
+
+    # Tophat
+    FRONT_TOPHAT = 0
+    onBlack = 3000
+
+else:
+    # Servos
+    servoArm = 0
+
+
+    # camera channels
+    ORANGE = 0
+    RED = 1
+    GREEN = 2
+    YELLOW = 3
+
+    # color tolerances
+    COLOR_PROXIMITY = 20
+    ORANGE_AREA = 500
+    RGY_AREA = 100
+
+    # Claw position values
+    # clawOpen = 0
+    # clawAlmostOpen = 500
+    # clawHalfCrossed = 640
+    # clawMiddle = 650
+    # clawStacked = 1080
+    # clawRedHalfOpen = 1400
+    # clawGreenHalfOpen = 1550
+    # clawCrossed = 2047
+
+    clawUp = 730
+    clawDown = 1400
 
     # Tophat
     FRONT_TOPHAT = 0

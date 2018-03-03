@@ -19,6 +19,7 @@ from wallaby import get_servo_position
 import drive as d
 import wallaby as w
 
+
 def waitForButton():
     print("Press Right Button...")
     while not digital(c.RIGHT_BUTTON):
@@ -31,7 +32,7 @@ def waitForButton():
 def DEBUG():
     freeze(c.LMOTOR)
     freeze(c.RMOTOR)
-    print('Program stop for DEBUG\nSeconds: ', seconds() - c.startTime)
+    #print('Program stop for DEBUG\nSeconds: ', seconds() - startTime)
     ao()
     exit(0)
 
@@ -39,7 +40,7 @@ def DEBUG():
 def DEBUGwithWait():
     freeze(c.LMOTOR)
     freeze(c.RMOTOR)
-    print ('Program stop for DEBUG\nSeconds: ', seconds() - c.startTime)
+    #print ('Program stop for DEBUG\nSeconds: ', seconds() - startTime)
     ao()
     msleep(5000)
 

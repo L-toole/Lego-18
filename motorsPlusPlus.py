@@ -9,7 +9,8 @@ It requires boolean "isClone", integer "LMOTOR", and integer "RMOTOR" from a "co
 These values refer to prime/clone status, the left motor's port, and the right motor's port respectively.
 '''
 
-from constants import IS_CLONE
+from constants import IS_CLONE_BLUE
+from constants import IS_CLONE_YELLOW
 from constants import LMOTOR
 from constants import RMOTOR
 from constants import *
@@ -34,9 +35,14 @@ WHEEL_DISTANCE = 5.50 #205 - 4.25  # Distance between the two wheels
 if IS_PRIME:
     INCHES_TO_TICKS = 205 #larger numbers = longer drive
     lAdjust = .98 # adjust left wheel counter to fix drift; larger number = drifts left
-else:
+
+elif IS_CLONE_BLUE:
     INCHES_TO_TICKS = 222
     lAdjust = 1.04  # adjust left wheel counter to fix drift
+
+else: #IS_CLONE_YELLOW
+    INCHES_TO_TICKS = 161
+    lAdjust = 1.01 # adjust left wheel counter to fix drift
 
 # Motor Control #
 
