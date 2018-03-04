@@ -42,10 +42,13 @@ def seeBlocks():
     s = p.checkColor(colorOrder)
     if s == c.RED:
         print("found red")
-    if s == c.YELLOW:
+    elif s == c.YELLOW:
         print("found yellow")
-    if s == c.GREEN:
+    elif s == c.GREEN:
         print("found green")
+    else:
+        print("Did not find cube")
+        u.DEBUG()
 
 def driveToSecondBlock():
 
@@ -66,10 +69,13 @@ def seeBlocksTwo():
     s = p.checkColor(colorOrder)
     if s == c.RED:
         print("found red")
-    if s == c.YELLOW:
+    elif s == c.YELLOW:
         print("found yellow")
-    if s == c.GREEN:
+    elif s == c.GREEN:
         print("found green")
+    else:
+        print("Did not find cube")
+        u.DEBUG()
 
 def driveToCrates():
     mpp.pivot_right(92,50)
@@ -106,10 +112,13 @@ def driveToCenter():
 
 def goYellowFirst():
     print('Going to yellow first position.')
-    mpp.drive_speed(6, 50)
-    mpp.rotate(-93, 50)
-    mpp.drive_speed(12, 50)
-    mpp.rotate(93, 50)
+# THIS COMMENTED OUT CODE SEEMS TO MAKE LEGO CHUCK THE CUBES OFF THE BOARD SO I AM STARTING FROM SCRATCH
+# IF THIS CODE DOES SOMETHING IMPORTANT IT IS STILL HERE
+#    mpp.drive_speed(6, 50)
+#    mpp.rotate(-93, 50)
+#    mpp.drive_speed(12, 50)
+#    mpp.rotate(93, 50)
+    mpp.rotate(-100, 50)
 
 def goYellowSecond():
     print('Going to yellow second position.')
@@ -124,9 +133,9 @@ def goYellowSecond():
     mpp.drive_speed(.5, 40)
     u.move_servo(c.servoArm, c.armBlockLevel, 5)
     # mpp.rotate(10, 30)
-    u.move_servo(c.servoClaw, c.clawOpen)
-    mpp.drive_speed(-5, 50)
-    mpp.rotate(180, 30)
+    #u.move_servo(c.servoClaw, c.clawOpen)
+    #mpp.drive_speed(-5, 50)
+    #mpp.rotate(180, 30)
 
 
     # Here you would use servos to drop the cube. However, that hardware does not currently exist.
@@ -149,5 +158,8 @@ def selfTest():
     mpp.rotate(-20,30)
     mpp.rotate(20,30)
     enable_servos()
+    u.move_servo(c.servoArm, c.armMid)
+    msleep(2000)
+    u.move_servo(c.servoArm, c.armUp)
     u.move_servo(c.servoClaw, c.clawOpen)
     u.move_servo(c.servoClaw, c.clawClosed)
