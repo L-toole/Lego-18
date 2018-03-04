@@ -109,15 +109,12 @@ def driveToCenter():
     mpp.rotate(45, 40)
     mpp.drive_speed(24.5, 50)
     mpp.pivot_right(-15, 50)
+    mpp.pivot_right(57, 50)
+    mpp.drive_speed(11, 50)
+    mpp.pivot_right(-90, 50)
 
 def goYellowFirst():
     print('Going to yellow first position.')
-# THIS COMMENTED OUT CODE SEEMS TO MAKE LEGO CHUCK THE CUBES OFF THE BOARD SO I AM STARTING FROM SCRATCH
-# IF THIS CODE DOES SOMETHING IMPORTANT IT IS STILL HERE
-#    mpp.drive_speed(6, 50)
-#    mpp.rotate(-93, 50)
-#    mpp.drive_speed(12, 50)
-#    mpp.rotate(93, 50)
     mpp.rotate(-100, 50)
 
 def goYellowSecond():
@@ -142,6 +139,7 @@ def goYellowSecond():
 
 def goYellowThird():
     print('Going to yellow third position.')
+    mpp.rotate(15, 50)
 
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
     p.determineOrder(colorOrder)
