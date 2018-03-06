@@ -13,14 +13,22 @@ CLONE_SWITCH_BLUE = 1
 
 RIGHT_BUTTON = 13
 
+#Analog ports
+
+
 IS_CLONE_YELLOW = w.digital(CLONE_SWITCH_YELLOW)
 IS_CLONE_BLUE = w.digital(CLONE_SWITCH_BLUE)
 IS_PRIME = not IS_CLONE_YELLOW and not IS_CLONE_BLUE
 
 
 if IS_PRIME:
+    #Prime has new servo ports because of frisbee grab
+
     # Servos
-    servoClaw = 0
+    servoFrisbeeGrabber = 0
+    servoClaw = 1
+    servoArm = 2
+    servoFrisbeeArm = 0
 
     #camera channels
     ORANGE = 0
