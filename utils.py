@@ -43,6 +43,7 @@ def DEBUGwithWait():
     #print ('Program stop for DEBUG\nSeconds: ', seconds() - startTime)
     ao()
     msleep(5000)
+    exit(0)
 
 # Servo Constants
 DELAY = 10
@@ -94,7 +95,7 @@ def getWait():  # Used to break a loop after using "setWait". An example would b
 
 
 def onBlackFront():
-    return w.analog(c.FRONT_TOPHAT) > c.onBlack
+    return w.analog(c.FRONT_TOPHAT) > c.TOPHAT_THRESHOLD
 
 
 def timedLineFollowLeft(time):
@@ -173,3 +174,4 @@ def crossBlackBack():
     while onBlackBack():  # wait for white
         pass
     ao()
+

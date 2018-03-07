@@ -9,8 +9,8 @@ It requires boolean "isClone", integer "LMOTOR", and integer "RMOTOR" from a "co
 These values refer to prime/clone status, the left motor's port, and the right motor's port respectively.
 '''
 
-from constants import IS_CLONE_BLUE
-from constants import IS_CLONE_YELLOW
+from constants import IS_BLUE_BOT
+from constants import IS_YELLOW_BOT
 from constants import LMOTOR
 from constants import RMOTOR
 from constants import *
@@ -32,15 +32,18 @@ from wallaby import set_servo_position
 WHEEL_DISTANCE = 5.50 #205 - 4.25  # Distance between the two wheels
 
 
-if IS_PRIME:
-    INCHES_TO_TICKS = 205 #larger numbers = longer drive
-    lAdjust = .98 # adjust left wheel counter to fix drift; larger number = drifts left
+if IS_ORANGE_BOT:
+    WHEEL_DISTANCE = 5.125  # 205 - 4.25  # Distance between the two wheels
+    INCHES_TO_TICKS = 200 #larger numbers = longer drive
+    lAdjust = .99 # adjust left wheel counter to fix drift; larger number = drifts left
 
-elif IS_CLONE_BLUE:
+elif IS_BLUE_BOT:
+    WHEEL_DISTANCE = 5.50  # 205 - 4.25  # Distance between the two wheels
     INCHES_TO_TICKS = 222
     lAdjust = 1.04  # adjust left wheel counter to fix drift
 
 else: #IS_CLONE_YELLOW
+    WHEEL_DISTANCE = 5.50  # 205 - 4.25  # Distance between the two wheels
     INCHES_TO_TICKS = 220
     lAdjust = .97 # adjust left wheel counter to fix drift
 

@@ -10,40 +10,45 @@ colorOrder = []
 def init():
     #starting positions
     #START WITH CLAW UP/OPEN!!!!!!!!!
-    if c.IS_PRIME:
-        print("I AM PRIME")
-    elif c.IS_CLONE_BLUE:
-        print("I AM CLONE BLUE")
+    if c.IS_ORANGE_BOT:
+        print("I AM ORANGE BOT!")
+    elif c.IS_BLUE_BOT:
+        print("I AM BLUE BOT!")
     else:
-        print("I AM CLONE YELLOW")
+        print("I AM YELLOW BOT!")
     selfTest()
     enable_servos()
     p.cameraInit()
-    set_servo_position(c.servoArm, c.armUp)
     msleep(100)
     u.waitForButton()
     c.startTime = seconds()
 
 def driveOutStartBox():
     #drives out of start box to pom
-    if c.IS_CLONE_BLUE:
+    if c.IS_BLUE_BOT:
         pass
-    elif c.IS_CLONE_YELLOW:
+    elif c.IS_YELLOW_BOT:
         mpp.drive_speed(18, 100)
-    else:
-        mpp.drive_speed(22, 100)
+    else: #IS_ORANGE_BOT
+        mpp.drive_speed(19, 100)
 
 def selfTest():
-    mpp.drive_speed(4, 40)
-    mpp.drive_speed(4, -40)
-    mpp.rotate(-20, 30)
-    mpp.rotate(20, 30)
-    enable_servos()
     u.move_servo(c.servoArm, c.armMid)
-    msleep(2000)
-    u.move_servo(c.servoArm, c.armUp)
+    msleep(750)
     u.move_servo(c.servoClaw, c.clawOpen)
     u.move_servo(c.servoClaw, c.clawClosed)
+    u.move_servo(c.servoArm, c.armUp)
+    enable_servos()
+    mpp.drive_condition(30, 30, onBlack, False)
+    msleep(500)
+    mpp.drive_condition(-30, -30, onBlack, True)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmUp)
+    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
+    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberClosed)
+    mpp.rotate(-20, 30)
+    mpp.rotate(20, 30)
+
 
 #Code assumes that you are already lined up with the first block
 #You may need to change the length of the line follow based on position
@@ -61,12 +66,12 @@ def seeBlocks():
 
 def driveToSecondBlock():
 
-    if c.IS_CLONE_BLUE:
+    if c.IS_BLUE_BOT:
         mpp.drive_speed(20,100)
-    elif c.IS_CLONE_YELLOW:
+    elif c.IS_YELLOW_BOT:
         mpp.drive_speed(25.5, 100)
-    else:
-        mpp.drive_speed(20,100)
+    else: #IS_ORANGE_BOT
+        mpp.drive_speed(22, 100)
 
     # do something here
     # p.checkColor(colorOrder)
@@ -88,31 +93,36 @@ def seeBlocksTwo():
 
 def driveToCrates():
     mpp.drive_speed(-.5, 40)
-    mpp.pivot_right(85,50)#92
-    msleep(2000)
-    if c.IS_CLONE_YELLOW:
+    if c.IS_BLUE_BOT:
+        mpp.pivot_right(85,50)#92
+    elif c.IS_YELLOW_BOT:
+        mpp.pivot_right(85, 50)  # 92
+    else: #IS_ORANGE_BOT
+        mpp.pivot_right(87, 30) # 85
+    msleep(1000)
+    if c.IS_YELLOW_BOT:
         mpp.drive_speed(7, 100)
         u.move_servo(c.servoClaw, c.clawOpen)
         u.move_servo(c.servoArm, c.armBlockLevel)
         mpp.drive_speed(3.5, 50)
         mpp.rotate(-2, 20)
-    elif c.IS_CLONE_BLUE:
+    elif c.IS_BLUE_BOT:
         mpp.drive_speed(9, 100)
         mpp.drive_speed(-2,-100)
         u.move_servo(c.servoClaw, c.clawOpen)
         u.move_servo(c.servoArm, c.armBlockLevel)
         mpp.drive_speed(2.5, 50)
-    else:
-        mpp.drive_speed(9, 100)
-        mpp.drive_speed(-2, -100)
-        u.move_servo(c.servoClaw, c.clawOpen)
+    else: #IF_IS_ORANGE_BOT
+        mpp.drive_speed(5, 100)
         u.move_servo(c.servoArm, c.armBlockLevel)
+        u.move_servo(c.servoClaw, c.clawOpen)
+        u.DEBUG()
         mpp.drive_speed(2.5, 50)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
     u.move_servo(c.servoArm, c.armMid, 4)
     msleep(500)
-    if c.IS_CLONE_YELLOW:
+    if c.IS_YELLOW_BOT:
         mpp.rotate(2, 20)
         mpp.drive_speed(-4, 40)
     else:
@@ -179,3 +189,7 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
         goYellowSecond()
     elif colorOrder[2] == c.YELLOW:
         goYellowThird()
+
+
+def onBlack():
+    return analog(c.FRONT_TOPHAT) > c.TOPHAT_THRESHOLD
