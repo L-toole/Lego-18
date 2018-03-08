@@ -30,7 +30,7 @@ def lineFollowRight(time):
     sec = seconds()
     while(seconds()-sec<time):
         if(u.onBlackFront()):
-            drive(60,55)
+            drive(60,45)
         else:
-            drive(55,60)
+            drive(45,60)
     drive(0,0)

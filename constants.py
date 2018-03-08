@@ -64,6 +64,7 @@ if IS_ORANGE_BOT:
     #Frisbee arm posistion values
     frisbeeArmUp = 1290
     frisbeeArmDown = 1980
+    frisbeeArmGrab = 1450
 
     #Frisbee grabber posistion values
     frisbeeGrabberClosed = 1910

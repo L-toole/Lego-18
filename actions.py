@@ -116,8 +116,9 @@ def driveToCrates():
         mpp.drive_speed(5, 100)
         u.move_servo(c.servoArm, c.armBlockLevel)
         u.move_servo(c.servoClaw, c.clawOpen)
-        u.DEBUG()
-        mpp.drive_speed(2.5, 50)
+        mpp.rotate(-5, 50)
+        x.lineFollowRight(1.5)
+        #mpp.drive_speed(2.5, 50)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
     u.move_servo(c.servoArm, c.armMid, 4)
@@ -131,12 +132,13 @@ def driveToCrates():
 def driveToFrisbees():
     mpp.rotate(-120, 30)
     mpp.drive_timed(-50,-50, 7)
-    mpp.drive_timed(-50,-70, 2)
+    mpp.drive_timed(-50,-70, 1)
     mpp.pivot_right(-54, 50)
-    mpp.drive_speed(-4, 50)
-    msleep(2000)
+    mpp.drive_speed(2, 50)
+    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
 
 def driveToCenter():
+    u.DEBUG()
     mpp.drive_speed(4, 50)
     mpp.rotate(45, 40)
     mpp.drive_speed(24.5, 50)
