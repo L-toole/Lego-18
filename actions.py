@@ -33,12 +33,13 @@ def driveOutStartBox():
         mpp.drive_speed(19, 100)
 
 def selfTest():
+    enable_servos()
+    print ("Hola amigos")
     u.move_servo(c.servoArm, c.armMid)
     msleep(750)
     u.move_servo(c.servoClaw, c.clawOpen)
     u.move_servo(c.servoClaw, c.clawClosed)
     u.move_servo(c.servoArm, c.armUp)
-    enable_servos()
     mpp.drive_condition(30, 30, onBlack, False)
     msleep(500)
     mpp.drive_condition(-30, -30, onBlack, True)
@@ -92,13 +93,16 @@ def seeBlocksTwo():
         u.DEBUG()
 
 def driveToCrates():
+    u.waitForButton()
     mpp.drive_speed(-.5, 40)
+    u.move_servo(c.servoArm, c.armBlockLevel)
+    u.move_servo(c.servoClaw, c.clawOpen)
     if c.IS_BLUE_BOT:
         mpp.pivot_right(85,50)#92
     elif c.IS_YELLOW_BOT:
         mpp.pivot_right(85, 50)  # 92
     else: #IS_ORANGE_BOT
-        mpp.pivot_right(87, 30) # 85
+        mpp.pivot_right(75, 30) # 85
     msleep(1000)
     if c.IS_YELLOW_BOT:
         mpp.drive_speed(7, 100)
@@ -113,11 +117,9 @@ def driveToCrates():
         u.move_servo(c.servoArm, c.armBlockLevel)
         mpp.drive_speed(2.5, 50)
     else: #IF_IS_ORANGE_BOT
-        mpp.drive_speed(5, 100)
-        u.move_servo(c.servoArm, c.armBlockLevel)
-        u.move_servo(c.servoClaw, c.clawOpen)
-        mpp.rotate(-5, 50)
-        x.lineFollowRight(1.5)
+        # mpp.drive_speed(5, 100)
+        u.waitForButton()
+        x.lineFollowRight(2) ##################################THIS IS WHERE WE STOPPED ON THURSDAY THIS LINEFOLLOW MY NEED TO BE ADJUSTED
         #mpp.drive_speed(2.5, 50)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
@@ -131,11 +133,13 @@ def driveToCrates():
 
 def driveToFrisbees():
     mpp.rotate(-120, 30)
+    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
+    u.move_servo(c.servoFrisbeeArm, c.armFrisbee)
+
     mpp.drive_timed(-50,-50, 7)
-    mpp.drive_timed(-50,-70, 1)
+    mpp.drive_timed(-50,-70, .5)
     mpp.pivot_right(-54, 50)
     mpp.drive_speed(2, 50)
-    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
 
 def driveToCenter():
     u.DEBUG()

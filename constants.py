@@ -60,6 +60,7 @@ if IS_ORANGE_BOT:
     armBlockLevel = 1580
     armMid = 1375
     armDestack = 1030
+    armFrisbee = 1491
 
     #Frisbee arm posistion values
     frisbeeArmUp = 1290
@@ -68,7 +69,7 @@ if IS_ORANGE_BOT:
 
     #Frisbee grabber posistion values
     frisbeeGrabberClosed = 1910
-    frisbeeGrabberOpen = 1400
+    frisbeeGrabberOpen = 720
 
 
     #Tophat
