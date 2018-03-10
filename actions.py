@@ -30,7 +30,7 @@ def driveOutStartBox():
     elif c.IS_YELLOW_BOT:
         mpp.drive_speed(18, 100)
     else: #IS_ORANGE_BOT
-        mpp.drive_speed(19, 100)
+        mpp.drive_speed(16, 100)
 
 def selfTest():
     enable_servos()
@@ -44,9 +44,9 @@ def selfTest():
     msleep(750)
     u.move_servo(c.servoClaw, c.clawOpen)
     u.move_servo(c.servoClaw, c.clawClosed)
-    u.move_servo(c.servoArm, c.armUp)
+    u.move_servo(c.servoArm, c.armStartBoxPosition)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
-    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmUp)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
     u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
     u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberClosed)
 
@@ -133,7 +133,7 @@ def driveToCrates():
         mpp.rotate(2, 20)
         mpp.drive_speed(-4, 40)
     elif c.IS_ORANGE_BOT:
-        mpp.drive_speed(-7, 40)
+        mpp.drive_speed(-8, 40)
     else:
         mpp.drive_speed(-5, 40)
 
@@ -193,7 +193,10 @@ def goYellowSecond():
 
 def goYellowThird():
     print('Going to yellow third position.')
-    mpp.rotate(15, 50)
+    mpp.rotate(-70, 50)
+    x.lineFollowLeft(5)
+    mpp.rotate(-83, 40)
+
 
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
     p.determineOrder(colorOrder)

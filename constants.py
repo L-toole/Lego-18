@@ -58,14 +58,16 @@ if IS_ORANGE_BOT:
     #Arm posistion values
     armUp = 1400
     armBlockLevel = 1580
-    armMid = 1375
+    armMid = 1450
     armDestack = 1030
     armFrisbee = 1491
+    armStartBoxPosition = 800
 
     #Frisbee arm posistion values
     frisbeeArmUp = 1290
     frisbeeArmDown = 1980
     frisbeeArmGrab = 1450
+    frisbeeArmStartPosition = 884
 
     #Frisbee grabber posistion values
     frisbeeGrabberClosed = 1910
@@ -138,10 +140,12 @@ else: #IS_YELLOW_BOT
     armBlockLevel = 1520
     armMid = 1450
     armDestack = 1100
+    armTilted = 1300
 
     clawOpen = 750
     clawClosed = 150
 
     # Tophat
     FRONT_TOPHAT = 0
+
     TOPHAT_THRESHOLD = 3000
