@@ -36,19 +36,20 @@ def selfTest():
     enable_servos()
     print ("Hola amigos")
     u.move_servo(c.servoArm, c.armMid)
+    mpp.drive_condition(30, 30, onBlack, False)
+    msleep(500)
+    mpp.drive_condition(-30, -30, onBlack, True)
+    mpp.rotate(-20, 30)
+    mpp.rotate(20, 30)
     msleep(750)
     u.move_servo(c.servoClaw, c.clawOpen)
     u.move_servo(c.servoClaw, c.clawClosed)
     u.move_servo(c.servoArm, c.armUp)
-    mpp.drive_condition(30, 30, onBlack, False)
-    msleep(500)
-    mpp.drive_condition(-30, -30, onBlack, True)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmUp)
     u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
     u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberClosed)
-    mpp.rotate(-20, 30)
-    mpp.rotate(20, 30)
+
 
 
 #Code assumes that you are already lined up with the first block
@@ -93,8 +94,11 @@ def seeBlocksTwo():
         u.DEBUG()
 
 def driveToCrates():
-    u.waitForButton()
-    mpp.drive_speed(-.5, 40)
+    #u.waitForButton()
+    if c.IS_ORANGE_BOT:
+        pass
+    else:
+        mpp.drive_speed(-.5, 40)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
     if c.IS_BLUE_BOT:
@@ -118,8 +122,8 @@ def driveToCrates():
         mpp.drive_speed(2.5, 50)
     else: #IF_IS_ORANGE_BOT
         # mpp.drive_speed(5, 100)
-        u.waitForButton()
-        x.lineFollowRight(2) ##################################THIS IS WHERE WE STOPPED ON THURSDAY THIS LINEFOLLOW MY NEED TO BE ADJUSTED
+        #u.waitForButton()
+        x.lineFollowRight(3.2)
         #mpp.drive_speed(2.5, 50)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
@@ -128,6 +132,8 @@ def driveToCrates():
     if c.IS_YELLOW_BOT:
         mpp.rotate(2, 20)
         mpp.drive_speed(-4, 40)
+    elif c.IS_ORANGE_BOT:
+        mpp.drive_speed(-7, 40)
     else:
         mpp.drive_speed(-5, 40)
 
@@ -135,8 +141,10 @@ def driveToFrisbees():
     mpp.rotate(-120, 30)
     u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
     u.move_servo(c.servoFrisbeeArm, c.armFrisbee)
-
-    mpp.drive_timed(-50,-50, 7)
+    mpp.drive_timed(-50,-50, 6) #-50, -50, 7
+    mpp.rotate(30, 30)
+    mpp.drive_timed(-80, -80, 5.5)
+    u.DEBUG()
     mpp.drive_timed(-50,-70, .5)
     mpp.pivot_right(-54, 50)
     mpp.drive_speed(2, 50)

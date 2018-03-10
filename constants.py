@@ -56,7 +56,7 @@ if IS_ORANGE_BOT:
     clawClosed = 840
 
     #Arm posistion values
-    armUp = 1000
+    armUp = 1400
     armBlockLevel = 1580
     armMid = 1375
     armDestack = 1030
