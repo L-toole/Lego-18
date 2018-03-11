@@ -124,7 +124,6 @@ def driveToCrates():
         # mpp.drive_speed(5, 100)
         #u.waitForButton()
         x.lineFollowRight(3.2)
-        #mpp.drive_speed(2.5, 50)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
     u.move_servo(c.servoArm, c.armMid, 4)
@@ -136,6 +135,7 @@ def driveToCrates():
         mpp.drive_speed(-8, 40)
     else:
         mpp.drive_speed(-5, 40)
+    u.move_servo(c.servoArm, c.armHighMid, 4)
 
 def driveToFrisbees():
     mpp.rotate(-120, 30)
@@ -161,33 +161,41 @@ def driveToCenter():
 
 def goYellowFirst():
     print('Going to yellow first position.')
-    mpp.rotate(-100, 50)
+    mpp.rotate(90, 20)
+    x.lineFollowLeft(4)
+    mpp.rotate(90, 30)
+    mpp.drive_speed(8.5, 50)
+    u.move_servo(c.servoArm, c.armBlockLevel)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    u.move_servo(c.servoClaw, c.clawFullyOpen)
+    mpp.drive_speed(-1.5, 50)
+    u.move_servo(c.servoArm, c.armDestack)
+    mpp.drive_speed(1, 50)
+    u.move_servo(c.servoClaw, c. clawClosed)
+    u.move_servo(c.servoArm, c.armUp)
+    mpp.drive_speed(-4, 50)
+    mpp.rotate(-30, 20)
+
+
+
 
 def goYellowSecond():
     print('Going to yellow second position.')
     # Drive speed or sensor
-    mpp.drive_speed(5, 70)
-    mpp.drive_till_black(20, 20)
-    #mpp.drive_speed(-1, 20)
+    mpp.rotate(180, 50)
+    mpp.rotate(20, 50)
+    mpp.drive_speed(8.5, 50)
+    u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
-    # mpp.rotate(-10, 20)
     u.move_servo(c.servoArm, c.armDestack, 5)
     u.move_servo(c.servoClaw, c.clawClosed)
-    u.move_servo(c.servoArm, c.armUp)
+    u.move_servo(c.servoArm, c.armUp, 4)
     mpp.drive_speed(-2, 30)
-    mpp.rotate(-40, 30)
-    #Drive speed or sensor
-    #mpp.drive_speed(.5, 40)
-    mpp.drive_till_black(40,40)
-    #next few lines attempt to fix the problem with the angle of the drop and its possible error
-    mpp.drive_timed(20, 40, 3)
-    mpp.drive_till_black(-40,-40)
-    mpp.drive_speed(-3, 20)
-    u.move_servo(c.servoArm, c.armBlockLevel, 5)
-    # mpp.rotate(10, 30)
-    #u.move_servo(c.servoClaw, c.clawOpen)
-    #mpp.drive_speed(-5, 50)
-    #mpp.rotate(180, 30)
+    mpp.rotate(-50, 30)
+    mpp.drive_speed(3, 50)
+    u.move_servo(c.servoArm, c.armBlockLevel)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.drive_speed(2, 50)
 
     # Here you would use servos to drop the cube. However, that hardware does not currently exist.
 
@@ -195,7 +203,24 @@ def goYellowThird():
     print('Going to yellow third position.')
     mpp.rotate(-70, 50)
     x.lineFollowLeft(5)
-    mpp.rotate(-83, 40)
+    mpp.rotate(-90, 40)
+    mpp.drive_speed(7, 50)
+    mpp.rotate(13, 30)
+    mpp.drive_speed(4.5, 50)
+    u.move_servo(c.servoArm, c.armBlockLevel, 4)
+    u.move_servo(c.servoClaw, c. clawOpen)
+    u.move_servo(c.servoArm, c.armDestack)
+    u.move_servo(c.servoClaw, c.clawClosed)
+    u.move_servo(c.servoArm, c.armUp)
+    mpp.drive_speed(-4, 50)
+    mpp.rotate(-45, 30)
+    mpp.drive_speed(3.5, 50)
+    u.move_servo(c.servoArm, c.armBlockLevel,4)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.drive_speed(1.5, 50)
+    u.move_servo(c.servoClaw, c.clawFullyOpen)
+    mpp.drive_speed(-9, 50)
+
 
 
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!

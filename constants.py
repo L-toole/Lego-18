@@ -53,12 +53,14 @@ if IS_ORANGE_BOT:
 
     #New claw posistion values
     clawOpen = 1400
+    clawFullyOpen = 1800
     clawClosed = 840
 
     #Arm posistion values
-    armUp = 1400
+    armUp = 900
     armBlockLevel = 1580
     armMid = 1450
+    armHighMid = 1300
     armDestack = 1030
     armFrisbee = 1491
     armStartBoxPosition = 800
