@@ -32,7 +32,7 @@ def waitForButton():
 def DEBUG():
     freeze(c.LMOTOR)
     freeze(c.RMOTOR)
-    #print('Program stop for DEBUG\nSeconds: ', seconds() - startTime)
+    print('Program stop for DEBUG\nSeconds: ', seconds() - c.startTime)
     ao()
     exit(0)
 
