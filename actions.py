@@ -32,6 +32,7 @@ def driveOutStartBox():
     else: #IS_ORANGE_BOT
         mpp.drive_speed(16, 100)
 
+
 def selfTest():
     enable_servos()
     print ("Hola amigos")
@@ -106,7 +107,7 @@ def driveToCrates():
     elif c.IS_YELLOW_BOT:
         mpp.pivot_right(85, 50)  # 92
     else: #IS_ORANGE_BOT
-        mpp.pivot_right(75, 30) # 85
+        mpp.pivot_right(78, 30)  #75
     msleep(1000)
     if c.IS_YELLOW_BOT:
         mpp.drive_speed(7, 100)
@@ -114,6 +115,7 @@ def driveToCrates():
         u.move_servo(c.servoArm, c.armBlockLevel)
         mpp.drive_speed(3.5, 50)
         mpp.rotate(-2, 20)
+
     elif c.IS_BLUE_BOT:
         mpp.drive_speed(9, 100)
         mpp.drive_speed(-2,-100)
