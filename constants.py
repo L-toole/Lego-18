@@ -76,7 +76,10 @@ if IS_ORANGE_BOT:
 
 elif IS_BLUE_BOT:
     # Servos
-    servoClaw = 0
+    servoClaw = 1
+    #servoFrisbeeGrabber = 2
+    servoArm = 3
+    servoFrisbeeArm = 2
 
     # camera channels
     ORANGE = 0
@@ -98,8 +101,6 @@ elif IS_BLUE_BOT:
     # clawRedHalfOpen = 1400
     # clawGreenHalfOpen = 1550
     # clawCrossed = 2047
-
-
 
     # Tophat
     FRONT_TOPHAT = 0
