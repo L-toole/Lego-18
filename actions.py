@@ -26,7 +26,7 @@ def init():
 def driveOutStartBox():
     #drives out of start box to pom
     if c.IS_BLUE_BOT:
-        pass
+        mpp.drive_speed(16, 70)
     elif c.IS_YELLOW_BOT:
         mpp.drive_speed(18, 100)
     else: #IS_ORANGE_BOT
@@ -48,8 +48,6 @@ def selfTest():
     u.move_servo(c.servoArm, c.armStartBoxPosition)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
-    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
-    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberClosed)
 
 
 
@@ -70,7 +68,7 @@ def seeBlocks():
 def driveToSecondBlock():
 
     if c.IS_BLUE_BOT:
-        mpp.drive_speed(20,100)
+        mpp.drive_speed(22, 100)
     elif c.IS_YELLOW_BOT:
         mpp.drive_speed(25.5, 100)
     else: #IS_ORANGE_BOT
@@ -154,7 +152,7 @@ def driveToFrisbees():
 def driveToCenter():
     u.DEBUG()
     mpp.drive_speed(4, 50)
-    mpp.rotate(45, 40)
+    mpp.rotate(50, 40)
     mpp.drive_speed(24.5, 50)
     mpp.pivot_right(-15, 50)
     mpp.pivot_right(57, 50)
@@ -191,11 +189,11 @@ def goYellowSecond():
     print('Going to yellow second position.')
     # Drive speed or sensor
     mpp.rotate(180, 35)
-    mpp.rotate(19, 50)
+    mpp.rotate(10, 50)
     mpp.drive_speed(9, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
-    u.move_servo(c.servoClaw, c.clawFullyOpen)
-    mpp.drive_speed(1, 50)
+    # u.move_servo(c.servoClaw, c.clawFullyOpen)
+    # mpp.drive_speed(1, 50)
     u.move_servo(c.servoArm, c.armDestack, 5)
     u.move_servo(c.servoClaw, c.clawClosed)
     u.move_servo(c.servoArm, c.armUp, 4)
