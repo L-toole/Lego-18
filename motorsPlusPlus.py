@@ -244,7 +244,7 @@ def pivot_left(deg, speed):  # Pivots by moving the left wheel.
     freeze_motors()
 
 def drive_till_black(left, right):
-    while analog(FRONT_TOPHAT) < onBlack:
+    while analog(FRONT_TOPHAT) < 2000:  #c.onBlack:
         _drive(left, right)
     freeze_motors()
 

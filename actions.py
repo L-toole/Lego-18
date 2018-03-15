@@ -170,20 +170,37 @@ def goYellowFirst():
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
     # u.move_servo(c.servoClaw, c.clawFullyOpen)
-    mpp.drive_speed(-1.5, 50)
+    mpp.drive_speed(.5, 50)
     u.move_servo(c.servoArm, c.armDestack)
-    mpp.drive_speed(1, 50)
-    u.move_servo(c.servoClaw, c. clawClosed)
+    u.move_servo(c.servoClaw, c.clawClosed)
     u.move_servo(c.servoArm, c.armUp)
-    mpp.drive_speed(-4, 50)
-    mpp.rotate(-38, 20)
-    mpp.drive_speed(7.5, 50)
-    u.move_servo(c.servoArm, c.armBlockLevel, 4)
+    mpp.drive_speed(-5, 30)
+    msleep(500)
+    mpp.rotate(-90, 30)
+    mpp.drive_speed(12, 50)
+    mpp.rotate(90, 30)
+    msleep(200)
+    mpp.drive_speed(3.5, 50)
+    u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
-    mpp.drive_speed(1.5, 50)
-    u.move_servo(c.servoClaw, c.clawFullyOpen)
-    msleep(300)
-    mpp.drive_speed(-4, 50)
+    mpp.drive_speed(2, 50)
+    mpp.drive_speed(-3, 50)
+    mpp.drive_speed(4, 50)
+    mpp.drive_speed(-6, 50)
+    # mpp.drive_speed(.5, 50)
+    # u.move_servo(c.servoArm, c.armDestack)
+    # mpp.drive_speed(1, 50)
+    # u.move_servo(c.servoClaw, c. clawClosed)
+    # u.move_servo(c.servoArm, c.armUp)
+    # mpp.drive_speed(-4, 50)
+    # mpp.rotate(-38, 20)
+    # mpp.drive_speed(7.5, 50)
+    # u.move_servo(c.servoArm, c.armBlockLevel, 4)
+    # u.move_servo(c.servoClaw, c.clawFullyOpen)
+    # mpp.drive_speed(1.5, 50)
+    # u.move_servo(c.servoClaw, c.clawFullyOpen)
+    # msleep(300)
+    # mpp.drive_speed(-4, 50)
 
 
 
@@ -239,6 +256,8 @@ def goYellowThird():
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
     mpp.drive_speed(1, 50)
+    mpp.drive_speed(-3, 50)
+    mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
 
 
@@ -254,3 +273,7 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
 
 def onBlack():
     return analog(c.FRONT_TOPHAT) > c.TOPHAT_THRESHOLD
+
+
+def goToFirstTree():
+    mpp.drive_till_black(-50, -50)

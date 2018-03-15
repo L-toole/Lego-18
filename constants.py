@@ -149,5 +149,5 @@ else: #IS_YELLOW_BOT
 
     # Tophat
     FRONT_TOPHAT = 0
-
+    onBlack = 2000
     TOPHAT_THRESHOLD = 3000
