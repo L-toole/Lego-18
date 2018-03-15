@@ -82,7 +82,10 @@ if IS_ORANGE_BOT:
 
 elif IS_BLUE_BOT:
     # Servos
-    servoClaw = 0
+    servoClaw = 1
+    servoFrisbeeGrabber = 2
+    servoArm = 3
+    servoFrisbeeArm = 2
 
     # camera channels
     ORANGE = 0
@@ -95,6 +98,30 @@ elif IS_BLUE_BOT:
     ORANGE_AREA = 500
     RGY_AREA = 100
 
+    #New claw posistion values
+    clawOpen = 1400
+    clawFullyOpen = 1800
+    clawClosed = 840
+
+    #Arm posistion values
+    armUp = 900
+    armBlockLevel = 1580
+    armMid = 1450
+    armHighMid = 1300
+    armDestack = 1030
+    armFrisbee = 1491
+    armStartBoxPosition = 800
+
+    #Frisbee arm posistion values
+    frisbeeArmUp = 1290
+    frisbeeArmDown = 1980
+    frisbeeArmGrab = 1450
+    frisbeeArmStartPosition = 720
+
+    #Frisbee grabber posistion values
+    frisbeeGrabberClosed = 1910
+    frisbeeGrabberOpen = 720
+
     # Claw position values (OLD CLAW!)
     # clawOpen = 0
     # clawAlmostOpen = 500
@@ -104,8 +131,6 @@ elif IS_BLUE_BOT:
     # clawRedHalfOpen = 1400
     # clawGreenHalfOpen = 1550
     # clawCrossed = 2047
-
-
 
     # Tophat
     FRONT_TOPHAT = 0
