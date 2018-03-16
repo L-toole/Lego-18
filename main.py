@@ -18,14 +18,12 @@ def main():
     act.driveToCrates()
     act.driveToYellow()
     act.goToFirstTree()
-    u.DEBUG()
+    # u.DEBUG()
     # act.driveToFrisbees()
     # act.driveToCenter()
     # act.driveToYellow()
 
-
-
-
+    # mpp.drive_speed(40, 100)
 
 if __name__ == "__main__":
     sys.stdout = os.fdopen(sys.stdout.fileno(), "w", 0)
