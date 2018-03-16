@@ -295,6 +295,15 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
 def onBlack():
     return analog(c.FRONT_TOPHAT) > c.TOPHAT_THRESHOLD
 
-
-def goToFirstTree():
+#Backs up to black line and turns
+def goToBlackLineAndTurn():
     mpp.drive_till_black(-50, -50)
+    u.move_servo(3, 1250, 10)
+    mpp.rotate(90,50)
+
+#squares up on wall and black line
+def squareUp():
+    mpp.drive_speed(-18.5,50)
+    mpp.rotate(-90,50)
+    mpp.drive_till_black(50,50)
+    mpp.drive_timed(50,53, 1000)
