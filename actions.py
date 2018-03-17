@@ -102,11 +102,11 @@ def driveToCrates():
     u.move_servo(c.servoClaw, c.clawOpen)
     if c.IS_BLUE_BOT:
         mpp.drive_speed(1, 50)
-        mpp.pivot_right(85,50)#92
+        mpp.pivot_right(85,50)
     elif c.IS_YELLOW_BOT:
-        mpp.pivot_right(85, 50)  # 92
+        mpp.pivot_right(85, 50)
     else: #IS_ORANGE_BOT
-        mpp.pivot_right(78, 30)  #75
+        mpp.pivot_right(88, 30)
     msleep(1000)
     if c.IS_YELLOW_BOT:
         mpp.drive_speed(7, 100)
@@ -127,7 +127,7 @@ def driveToCrates():
     else: #IF_IS_ORANGE_BOT
         # mpp.drive_speed(5, 100)
         #u.waitForButton()
-        x.lineFollowRight(3.2)
+        x.lineFollowRight(4)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
     u.move_servo(c.servoArm, c.armMid, 4)
@@ -136,7 +136,7 @@ def driveToCrates():
         mpp.rotate(2, 20)
         mpp.drive_speed(-4, 40)
     elif c.IS_ORANGE_BOT:
-        mpp.drive_speed(-8, 40)
+        mpp.drive_speed(-10, 40)
     else:
         mpp.drive_speed(-5, 40)
     u.move_servo(c.servoArm, c.armHighMid, 4)
@@ -186,7 +186,7 @@ def goYellowFirst():
         mpp.drive_speed(10, 50)
     else:
         mpp.drive_speed(12, 50)
-    mpp.rotate(90, 30)
+    mpp.rotate(93, 30)
     msleep(200)
     mpp.drive_speed(3.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -217,9 +217,9 @@ def goYellowSecond():
     x.lineFollowLeft(4)
     mpp.rotate(90, 30)
     #msleep(18000)
-    mpp.drive_speed(6, 50)
+    mpp.drive_speed(7, 50) #changed here was 6
     mpp.pivot_right(95, 50)
-    mpp.drive_speed(18, 70)
+    mpp.drive_speed(17, 70)
     mpp.rotate(-85, 50)
     mpp.drive_speed(-2.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel, 4)
@@ -233,15 +233,14 @@ def goYellowSecond():
     if c.IS_BLUE_BOT:
         mpp.rotate(-90, 30)
     else:
-        mpp.rotate(-100, 30)
-    mpp.rotate(-80, 30)
-    mpp.drive_speed(8, 50)
+        mpp.rotate(-88, 30)
+    mpp.drive_speed(12, 50)
     mpp.rotate(90, 30)
     msleep(200)
     if c.IS_BLUE_BOT:
         mpp.drive_speed(3.5, 50)
     else:
-        mpp.drive_speed(2.5, 50)
+        mpp.drive_speed(3.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
     mpp.drive_speed(1, 50)

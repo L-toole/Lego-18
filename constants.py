@@ -99,7 +99,7 @@ elif IS_BLUE_BOT:
     RGY_AREA = 100
 
     #New claw posistion values
-    clawOpen = 1400
+    clawOpen = 1500
     clawFullyOpen = 1800
     clawClosed = 840
 
