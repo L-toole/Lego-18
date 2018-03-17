@@ -101,6 +101,7 @@ def driveToCrates():
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
     if c.IS_BLUE_BOT:
+        mpp.drive_speed(1, 50)
         mpp.pivot_right(85,50)#92
     elif c.IS_YELLOW_BOT:
         mpp.pivot_right(85, 50)  # 92
@@ -115,11 +116,14 @@ def driveToCrates():
         mpp.rotate(-2, 20)
 
     elif c.IS_BLUE_BOT:
-        mpp.drive_speed(9, 100)
-        mpp.drive_speed(-2,-100)
-        u.move_servo(c.servoClaw, c.clawOpen)
-        u.move_servo(c.servoArm, c.armBlockLevel)
-        mpp.drive_speed(2.5, 50)
+        x.lineFollowRight(3.2)
+
+        # mpp.drive_speed(9, 100)
+        # mpp.drive_speed(-2,-100)
+        # u.waitForButton()
+        # u.move_servo(c.servoClaw, c.clawOpen)
+        # u.move_servo(c.servoArm, c.armBlockLevel)
+        # mpp.drive_speed(2.5, 50)
     else: #IF_IS_ORANGE_BOT
         # mpp.drive_speed(5, 100)
         #u.waitForButton()
@@ -162,7 +166,10 @@ def driveToCenter():
 def goYellowFirst():
     print('Going to yellow first position.')
     mpp.rotate(90, 20)
-    x.lineFollowLeft(4)
+    if c.IS_BLUE_BOT:
+        x.lineFollowLeft(5.5)
+    else:
+        x.lineFollowLeft(4)
     mpp.rotate(90, 30)
     mpp.drive_speed(9, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -175,7 +182,10 @@ def goYellowFirst():
     mpp.drive_speed(-5, 30)
     msleep(500)
     mpp.rotate(-90, 30)
-    mpp.drive_speed(12, 50)
+    if c.IS_BLUE_BOT:
+        mpp.drive_speed(10, 50)
+    else:
+        mpp.drive_speed(12, 50)
     mpp.rotate(90, 30)
     msleep(200)
     mpp.drive_speed(3.5, 50)
@@ -185,6 +195,20 @@ def goYellowFirst():
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
+    # mpp.drive_speed(.5, 50)
+    # u.move_servo(c.servoArm, c.armDestack)
+    # mpp.drive_speed(1, 50)
+    # u.move_servo(c.servoClaw, c. clawClosed)
+    # u.move_servo(c.servoArm, c.armUp)
+    # mpp.drive_speed(-4, 50)
+    # mpp.rotate(-38, 20)
+    # mpp.drive_speed(7.5, 50)
+    # u.move_servo(c.servoArm, c.armBlockLevel, 4)
+    # u.move_servo(c.servoClaw, c.clawFullyOpen)
+    # mpp.drive_speed(1.5, 50)
+    # u.move_servo(c.servoClaw, c.clawFullyOpen)
+    # msleep(300)
+    # mpp.drive_speed(-4, 50)
 
 def goYellowSecond():
     print('Going to yellow second position.')
@@ -206,11 +230,18 @@ def goYellowSecond():
     u.move_servo(c.servoArm, c.armUp)
     mpp.drive_speed(-5, 30)
     msleep(500)
+    if c.IS_BLUE_BOT:
+        mpp.rotate(-90, 30)
+    else:
+        mpp.rotate(-100, 30)
     mpp.rotate(-80, 30)
     mpp.drive_speed(8, 50)
     mpp.rotate(90, 30)
     msleep(200)
-    mpp.drive_speed(2.5, 50)
+    if c.IS_BLUE_BOT:
+        mpp.drive_speed(3.5, 50)
+    else:
+        mpp.drive_speed(2.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
     mpp.drive_speed(1, 50)
