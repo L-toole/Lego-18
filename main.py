@@ -19,7 +19,6 @@ def main():
     act.driveToYellow()
     act.goToBlackLineAndTurn()
     act.squareUp()
-    u.DEBUG()
     # act.driveToFrisbees()
     # act.driveToCenter()
     # act.driveToYellow()
