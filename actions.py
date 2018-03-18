@@ -48,8 +48,6 @@ def selfTest():
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
 
-
-
 #Code assumes that you are already lined up with the first block
 #You may need to change the length of the line follow based on position
 def seeBlocks():
@@ -65,11 +63,8 @@ def seeBlocks():
         u.DEBUG()
 
 def driveToSecondBlock():
-
     if c.IS_BLUE_BOT:
         mpp.drive_speed(22, 100)
-    elif c.IS_YELLOW_BOT:
-        mpp.drive_speed(25.5, 100)
     else: #IS_ORANGE_BOT
         mpp.drive_speed(22, 100)
 
@@ -92,6 +87,7 @@ def seeBlocksTwo():
 
 
 def driveToCrates():
+    print ("Driving to crates")
     if c.IS_ORANGE_BOT:
         pass
     else:
@@ -101,37 +97,28 @@ def driveToCrates():
     if c.IS_BLUE_BOT:
         mpp.drive_speed(1, 50)
         mpp.pivot_right(85,50)
-    elif c.IS_YELLOW_BOT:
-        mpp.pivot_right(85, 50)
     else: #IS_ORANGE_BOT
         mpp.pivot_right(88, 30)
+        mpp.drive_till_black(60, 60)
     msleep(1000)
-    if c.IS_YELLOW_BOT:
-        mpp.drive_speed(7, 100)
-        u.move_servo(c.servoClaw, c.clawOpen)
-        u.move_servo(c.servoArm, c.armBlockLevel)
-        mpp.drive_speed(3.5, 50)
-        mpp.rotate(-2, 20)
-
-    elif c.IS_BLUE_BOT:
+    if c.IS_BLUE_BOT:
         x.lineFollowRight(3.2)
     else: #IF_IS_ORANGE_BOT
-        x.lineFollowRight(4)
+        x.lineFollowRight(3)
+        u.waitForButton()
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
     u.move_servo(c.servoArm, c.armMid, 4)
     msleep(500)
-    if c.IS_YELLOW_BOT:
-        mpp.rotate(2, 20)
-        mpp.drive_speed(-4, 40)
-    elif c.IS_ORANGE_BOT:
-        mpp.drive_speed(-7.5, 40)
+    if c.IS_ORANGE_BOT:
+        mpp.drive_speed(-6.5, 40)
     else:
         mpp.drive_speed(-5, 40)
     u.move_servo(c.servoArm, c.armHighMid, 4)
 
 
 def driveToCenter():
+    print ("Driving to center")
     mpp.drive_speed(4, 50)
     mpp.rotate(50, 40)
     mpp.drive_speed(24.5, 50)
@@ -246,18 +233,20 @@ def goYellowThird():
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
 
+#Backs up to black line and turns
+def goToBlackLineAndTurn():
+    mpp.drive_till_black(-50, -50)
+    mpp.drive_speed(-3, 60)
+    u.move_servo(3, 1250, 10)
+    mpp.rotate(100, 50)
 
-def driveToFrisbees():
-    mpp.rotate(-120, 30)
-    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
-    u.move_servo(c.servoFrisbeeArm, c.armFrisbee)
-    mpp.drive_timed(-50,-50, 7)
-    mpp.rotate(30, 30)
-    mpp.drive_timed(-80, -80, 5.5)
-    mpp.drive_timed(-50,-70, .5)
-    mpp.pivot_right(-54, 50)
-    mpp.drive_speed(2, 50)
-
+#squares up on wall and black line
+def squareUp():
+    mpp.drive_speed(-18.5,50)
+    mpp.drive_speed(2.8, 50)
+    mpp.rotate(-82, 50)
+    # mpp.drive_till_black(-50,50)
+    # mpp.drive_timed(50,53, 1000)
 
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
     p.determineOrder(colorOrder)
@@ -268,20 +257,11 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
     elif colorOrder[2] == c.YELLOW:
         goYellowThird()
 
+def driveToFrisbees():
+    print ("Driving to frisbees")
+    mpp.drive_speed(-7, 60)
 
 def onBlack():
     return analog(c.FRONT_TOPHAT) > c.TOPHAT_THRESHOLD
 
-#Backs up to black line and turns
-def goToBlackLineAndTurn():
-    mpp.drive_till_black(-50, -50)
-    u.move_servo(3, 1250, 10)
-    mpp.rotate(100, 50)
 
-#squares up on wall and black line
-def squareUp():
-    mpp.drive_speed(-18.5,50)
-    mpp.drive_speed(1, 50)
-    mpp.rotate(-90,50)
-    # mpp.drive_till_black(-50,50)
-    # mpp.drive_timed(50,53, 1000)
