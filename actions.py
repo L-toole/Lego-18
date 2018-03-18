@@ -15,7 +15,8 @@ def init():
     elif c.IS_BLUE_BOT:
         print("I AM BLUE BOT!")
     else:
-        print("I AM YELLOW BOT!")
+        print("I AM YELLOW BOT! !!!!!!!!!!")
+        u.DEBUG()  # do not remove
     selfTest()
     enable_servos()
     p.cameraInit()
@@ -27,8 +28,6 @@ def driveOutStartBox():
     #drives out of start box to pom
     if c.IS_BLUE_BOT:
         mpp.drive_speed(16, 70)
-    elif c.IS_YELLOW_BOT:
-        mpp.drive_speed(18, 100)
     else: #IS_ORANGE_BOT
         mpp.drive_speed(16, 100)
 
@@ -90,10 +89,9 @@ def seeBlocksTwo():
         print("found green")
     else:
         print("Did not find cube")
-        u.DEBUG()
+
 
 def driveToCrates():
-    #u.waitForButton()
     if c.IS_ORANGE_BOT:
         pass
     else:
@@ -117,16 +115,7 @@ def driveToCrates():
 
     elif c.IS_BLUE_BOT:
         x.lineFollowRight(3.2)
-
-        # mpp.drive_speed(9, 100)
-        # mpp.drive_speed(-2,-100)
-        # u.waitForButton()
-        # u.move_servo(c.servoClaw, c.clawOpen)
-        # u.move_servo(c.servoArm, c.armBlockLevel)
-        # mpp.drive_speed(2.5, 50)
     else: #IF_IS_ORANGE_BOT
-        # mpp.drive_speed(5, 100)
-        #u.waitForButton()
         x.lineFollowRight(4)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
@@ -136,25 +125,13 @@ def driveToCrates():
         mpp.rotate(2, 20)
         mpp.drive_speed(-4, 40)
     elif c.IS_ORANGE_BOT:
-        mpp.drive_speed(-10, 40)
+        mpp.drive_speed(-7.5, 40)
     else:
         mpp.drive_speed(-5, 40)
     u.move_servo(c.servoArm, c.armHighMid, 4)
 
-def driveToFrisbees():
-    mpp.rotate(-120, 30)
-    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
-    u.move_servo(c.servoFrisbeeArm, c.armFrisbee)
-    mpp.drive_timed(-50,-50, 6) #-50, -50, 7
-    mpp.rotate(30, 30)
-    mpp.drive_timed(-80, -80, 5.5)
-    u.DEBUG()
-    mpp.drive_timed(-50,-70, .5)
-    mpp.pivot_right(-54, 50)
-    mpp.drive_speed(2, 50)
 
 def driveToCenter():
-    u.DEBUG()
     mpp.drive_speed(4, 50)
     mpp.rotate(50, 40)
     mpp.drive_speed(24.5, 50)
@@ -195,20 +172,7 @@ def goYellowFirst():
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
-    # mpp.drive_speed(.5, 50)
-    # u.move_servo(c.servoArm, c.armDestack)
-    # mpp.drive_speed(1, 50)
-    # u.move_servo(c.servoClaw, c. clawClosed)
-    # u.move_servo(c.servoArm, c.armUp)
-    # mpp.drive_speed(-4, 50)
-    # mpp.rotate(-38, 20)
-    # mpp.drive_speed(7.5, 50)
-    # u.move_servo(c.servoArm, c.armBlockLevel, 4)
-    # u.move_servo(c.servoClaw, c.clawFullyOpen)
-    # mpp.drive_speed(1.5, 50)
-    # u.move_servo(c.servoClaw, c.clawFullyOpen)
-    # msleep(300)
-    # mpp.drive_speed(-4, 50)
+
 
 def goYellowSecond():
     print('Going to yellow second position.')
@@ -247,38 +211,52 @@ def goYellowSecond():
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
-    u.DEBUG()
-
 
     # Here you would use servos to drop the cube. However, that hardware does not currently exist.
 
 def goYellowThird():
     print('Going to yellow third position.')
     mpp.rotate(-70, 50)
-    x.lineFollowLeft(5)
+    x.lineFollowLeft(6)
     mpp.rotate(-90, 40)
-    mpp.drive_speed(7, 50)
-    mpp.rotate(13, 30)
-    mpp.drive_speed(4.5, 50)
+    mpp.drive_till_black(60, 60)
     u.move_servo(c.servoArm, c.armBlockLevel, 4)
     u.move_servo(c.servoClaw, c. clawFullyOpen)
-    mpp.drive_speed(.5, 50)
+    mpp.drive_speed(1, 50)
     u.move_servo(c.servoArm, c.armDestack)
     u.move_servo(c.servoClaw, c.clawClosed)
     u.move_servo(c.servoArm, c.armUp)
     mpp.drive_speed(-5, 30)
     msleep(500)
-    mpp.rotate(-100, 30)
-    mpp.drive_speed(8, 50)
+    if c.IS_BLUE_BOT:
+        mpp.rotate(-90, 30)
+    else:
+        mpp.rotate(-88, 30)
+    mpp.drive_speed(12, 50)
     mpp.rotate(90, 30)
     msleep(200)
-    mpp.drive_speed(2.5, 50)
+    if c.IS_BLUE_BOT:
+        mpp.drive_speed(3.5, 50)
+    else:
+        mpp.drive_speed(3.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
     mpp.drive_speed(1, 50)
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
+
+
+def driveToFrisbees():
+    mpp.rotate(-120, 30)
+    u.move_servo(c.servoFrisbeeGrabber, c.frisbeeGrabberOpen)
+    u.move_servo(c.servoFrisbeeArm, c.armFrisbee)
+    mpp.drive_timed(-50,-50, 7)
+    mpp.rotate(30, 30)
+    mpp.drive_timed(-80, -80, 5.5)
+    mpp.drive_timed(-50,-70, .5)
+    mpp.pivot_right(-54, 50)
+    mpp.drive_speed(2, 50)
 
 
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
