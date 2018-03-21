@@ -24,14 +24,6 @@ def init():
     u.waitForButton()
     c.startTime = seconds()
 
-def driveOutStartBox():
-    #drives out of start box to pom
-    if c.IS_BLUE_BOT:
-        mpp.drive_speed(16, 70)
-    else: #IS_ORANGE_BOT
-        mpp.drive_speed(16, 100)
-
-
 def selfTest():
     enable_servos()
     print ("Hola amigos")
@@ -48,6 +40,13 @@ def selfTest():
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
 
+def driveOutStartBox():
+    #drives out of start box to pom
+    if c.IS_BLUE_BOT:
+        mpp.drive_speed(16, 70)
+    else: #IS_ORANGE_BOT
+        mpp.drive_speed(16, 100)
+
 #Code assumes that you are already lined up with the first block
 #You may need to change the length of the line follow based on position
 def seeBlocks():
@@ -63,11 +62,14 @@ def seeBlocks():
         u.DEBUG()
 
 def driveToSecondBlock():
+    #Has failed multiple times
+    #Need to use SENSORS
     if c.IS_BLUE_BOT:
         mpp.drive_speed(22, 100)
     else: #IS_ORANGE_BOT
-        mpp.drive_speed(22, 100)
-
+        #mpp.drive_speed(22, 100)
+        #Please make this smoother
+        x.lineFollowBounce(7.3, c.SIDE_TOPHAT)
     # do something here
     # p.checkColor(colorOrder)
     # p.determineOrder(colorOrder)
@@ -105,7 +107,7 @@ def driveToCrates():
         x.lineFollowRight(3.2)
     else: #IF_IS_ORANGE_BOT
         x.lineFollowRight(3)
-        u.waitForButton()
+        #u.waitForButton()
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
     u.move_servo(c.servoArm, c.armMid, 4)

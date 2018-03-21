@@ -2,6 +2,7 @@
 from wallaby import *
 import utils as u
 import constants as c
+import motorsPlusPlus as mpp
 
 
 def driveTimed(left, right, time):
@@ -34,3 +35,14 @@ def lineFollowRight(time):
         else:
             drive(45,60)
     drive(0,0)
+
+def lineFollowBounce(time, port):
+    sec = seconds()
+    while (seconds() - sec < time):
+        if(analog(port) > c.TOPHAT_THRESHOLD):
+            drive(50, 100)
+        elif(analog(port) < 500):
+            drive(100,50)
+        else:
+            drive(100,100)
+        drive(0, 0)

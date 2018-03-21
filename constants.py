@@ -78,6 +78,7 @@ if IS_ORANGE_BOT:
 
     #Tophat
     FRONT_TOPHAT = 0
+    SIDE_TOPHAT = 1
     TOPHAT_THRESHOLD = 2000
 
 elif IS_BLUE_BOT:
