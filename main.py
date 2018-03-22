@@ -19,7 +19,7 @@ def main():
     act.driveToCrates()
     act.driveToYellow()
     act.goToBlackLineAndTurn()
-    act.squareUp()
+    act.grabFrisbee()
     act.driveToFrisbees()
     # act.driveToCenter()
     # act.driveToYellow()

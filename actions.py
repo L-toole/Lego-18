@@ -100,7 +100,7 @@ def driveToCrates():
         mpp.drive_speed(1, 50)
         mpp.pivot_right(85,50)
     else: #IS_ORANGE_BOT
-        mpp.pivot_right(88, 30)
+        mpp.pivot_right(84, 30)
         mpp.drive_till_black(60, 60)
     msleep(1000)
     if c.IS_BLUE_BOT:
@@ -152,7 +152,7 @@ def goYellowFirst():
         mpp.drive_speed(10, 50)
     else:
         mpp.drive_speed(12, 50)
-    mpp.rotate(93, 30)
+    mpp.rotate(96, 30)
     msleep(200)
     mpp.drive_speed(3.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -161,6 +161,15 @@ def goYellowFirst():
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
+    #start of going to get frisbee
+    mpp.drive_till_black(-50, -50)
+    mpp.drive_speed(-5, 60)
+    u.move_servo(3, 1250, 10)
+    mpp.rotate(94, 50)
+    mpp.drive_speed(-18.5,50)
+    mpp.drive_speed(2.8, 50)
+    mpp.rotate(-82, 50)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmGrab)
 
 
 def goYellowSecond():
@@ -200,8 +209,8 @@ def goYellowSecond():
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
+    #start of going to get frisbee
 
-    # Here you would use servos to drop the cube. However, that hardware does not currently exist.
 
 def goYellowThird():
     print('Going to yellow third position.')
@@ -235,21 +244,6 @@ def goYellowThird():
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
 
-#Backs up to black line and turns
-def goToBlackLineAndTurn():
-    mpp.drive_till_black(-50, -50)
-    mpp.drive_speed(-3, 60)
-    u.move_servo(3, 1250, 10)
-    mpp.rotate(100, 50)
-
-#squares up on wall and black line
-def squareUp():
-    mpp.drive_speed(-18.5,50)
-    mpp.drive_speed(2.8, 50)
-    mpp.rotate(-82, 50)
-    # mpp.drive_till_black(-50,50)
-    # mpp.drive_timed(50,53, 1000)
-
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
     p.determineOrder(colorOrder)
     if colorOrder[0] == c.YELLOW:
@@ -261,9 +255,9 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
 
 def driveToFrisbees():
     print ("Driving to frisbees")
-    mpp.drive_speed(-7, 60)
+    mpp.drive_speed(-6, 60)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
+    u.DEBUG()
 
 def onBlack():
     return analog(c.FRONT_TOPHAT) > c.TOPHAT_THRESHOLD
-
-
