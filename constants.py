@@ -25,10 +25,10 @@ if IS_ORANGE_BOT:
     #Prime has new servo ports because of frisbee grab
 
     # Servos
-    servoFrisbeeGrabber = 0
+    #servoFrisbeeGrabber = 0
     servoClaw = 1
     servoArm = 2
-    servoFrisbeeArm = 3
+    servoFrisbeeArm = 0
 
     #camera channels
     ORANGE = 0
@@ -68,7 +68,7 @@ if IS_ORANGE_BOT:
     #Frisbee arm posistion values
     frisbeeArmUp = 1290
     frisbeeArmDown = 1980
-    frisbeeArmGrab = 1450
+    frisbeeArmGrab = 1256
     frisbeeArmStartPosition = 884
 
     #Frisbee grabber posistion values

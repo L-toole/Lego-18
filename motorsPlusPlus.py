@@ -33,9 +33,9 @@ WHEEL_DISTANCE = 5.50 #205 - 4.25  # Distance between the two wheels
 
 
 if IS_ORANGE_BOT:
-    WHEEL_DISTANCE = 5.5  # 205 - 4.25  # Distance between the two wheels
+    WHEEL_DISTANCE = 5.50  # 205 - 4.25  # Distance between the two wheels
     INCHES_TO_TICKS = 196 #larger numbers = longer drive
-    lAdjust = .98 #.99 # adjust left wheel counter to fix drift; Larger number makes the robot drive left...?
+    lAdjust = 1.05 #.99 # adjust left wheel counter to fix drift; Larger number makes the robot drive left...?
 
 elif IS_BLUE_BOT:
     WHEEL_DISTANCE = 5.50  # 205 - 4.25  # Distance between the two wheels
