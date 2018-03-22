@@ -84,9 +84,9 @@ if IS_ORANGE_BOT:
 elif IS_BLUE_BOT:
     # Servos
     servoClaw = 1
-    servoFrisbeeGrabber = 2
-    servoArm = 3
-    servoFrisbeeArm = 2
+    servoArm = 2
+    servoFrisbeeArm = 3
+
 
     # camera channels
     ORANGE = 0
@@ -114,10 +114,10 @@ elif IS_BLUE_BOT:
     armStartBoxPosition = 800
 
     #Frisbee arm posistion values
-    frisbeeArmUp = 1290
-    frisbeeArmDown = 1980
-    frisbeeArmGrab = 1450
-    frisbeeArmStartPosition = 720
+    frisbeeArmUp = 180
+    frisbeeArmDown = 1168
+    frisbeeArmGrab = 463
+    frisbeeArmStartPosition = 130
 
     #Frisbee grabber posistion values
     frisbeeGrabberClosed = 1910

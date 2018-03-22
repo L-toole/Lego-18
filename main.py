@@ -15,6 +15,7 @@ def main():
     act.seeBlocks()
     act.driveToSecondBlock()
     act.seeBlocksTwo()
+    u.DEBUG()
     act.driveToCrates()
     act.driveToYellow()
     act.goToBlackLineAndTurn()

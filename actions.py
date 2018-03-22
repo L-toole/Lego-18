@@ -26,7 +26,7 @@ def init():
 
 def selfTest():
     enable_servos()
-    print ("Hola amigos")
+    print ("Hola amigas")
     u.move_servo(c.servoArm, c.armMid)
     mpp.drive_condition(30, 30, onBlack, False)
     msleep(500)
@@ -43,7 +43,7 @@ def selfTest():
 def driveOutStartBox():
     #drives out of start box to pom
     if c.IS_BLUE_BOT:
-        mpp.drive_speed(16, 70)
+        mpp.drive_timed(100, 79, 2.6)
     else: #IS_ORANGE_BOT
         mpp.drive_speed(16, 100)
 
@@ -65,7 +65,7 @@ def driveToSecondBlock():
     #Has failed multiple times
     #Need to use SENSORS
     if c.IS_BLUE_BOT:
-        mpp.drive_speed(22, 100)
+        mpp.drive_timed(100, 77, 3.4)
     else: #IS_ORANGE_BOT
         #mpp.drive_speed(22, 100)
         #Please make this smoother
