@@ -43,7 +43,8 @@ def selfTest():
 def driveOutStartBox():
     #drives out of start box to pom
     if c.IS_BLUE_BOT:
-        mpp.drive_timed(100, 79, 2.6)
+        # mpp.drive_timed(100, 79, 2.6)  # original
+        mpp.drive_speed(40, 90) # test
     else: #IS_ORANGE_BOT
         # mpp.drive_timed(85, 105, 2.7)
         mpp.drive_speed(40, 90)

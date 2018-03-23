@@ -21,6 +21,19 @@ IS_BLUE_BOT = w.digital(ROBOT_ID_BLUE)
 IS_ORANGE_BOT = not IS_YELLOW_BOT and not IS_BLUE_BOT
 
 
+# Drive Constants
+WHEEL_DISTANCE = 5.50 #205 - 4.25  # Distance between the two wheels
+
+
+if IS_ORANGE_BOT:
+    INCHES_TO_TICKS = 195 #larger numbers = longer drive
+    lAdjust =  0.922 #1.12 #.99 # adjust left wheel counter to fix drift; Larger number makes the robot drive left...?
+
+else: # Blue Bot
+    INCHES_TO_TICKS = 205
+    lAdjust = 1.02  # adjust left wheel counter to fix drift
+
+
 if IS_ORANGE_BOT:
     #Prime has new servo ports because of frisbee grab
 
@@ -40,16 +53,6 @@ if IS_ORANGE_BOT:
     COLOR_PROXIMITY=20
     ORANGE_AREA=500
     RGY_AREA=100
-
-    #Claw position values (OLD CLAW!)
-    # clawOpen = 0
-    # clawAlmostOpen= 500
-    # clawHalfCrossed = 640
-    # clawMiddle = 650
-    # clawStacked = 1000
-    # clawRedHalfOpen = 1300
-    # clawGreenHalfOpen = 1450
-    # clawCrossed = 2047
 
     #New claw posistion values
     clawOpen = 1400
@@ -81,7 +84,7 @@ if IS_ORANGE_BOT:
     SIDE_TOPHAT = 1
     TOPHAT_THRESHOLD = 2000
 
-elif IS_BLUE_BOT:
+else: # Blue Bot
     # Servos
     servoClaw = 1
     servoArm = 2
@@ -123,57 +126,7 @@ elif IS_BLUE_BOT:
     frisbeeGrabberClosed = 1910
     frisbeeGrabberOpen = 720
 
-    # Claw position values (OLD CLAW!)
-    # clawOpen = 0
-    # clawAlmostOpen = 500
-    # clawHalfCrossed = 640
-    # clawMiddle = 650
-    # clawStacked = 1080
-    # clawRedHalfOpen = 1400
-    # clawGreenHalfOpen = 1550
-    # clawCrossed = 2047
-
     # Tophat
     FRONT_TOPHAT = 0
     TOPHAT_THRESHOLD = 3000
 
-else: #IS_YELLOW_BOT
-    # Servos
-    servoArm = 0
-    servoClaw = 1
-
-
-    # camera channels
-    ORANGE = 0
-    RED = 1
-    GREEN = 2
-    YELLOW = 3
-
-    # color tolerances
-    COLOR_PROXIMITY = 20
-    ORANGE_AREA = 500
-    RGY_AREA = 100
-
-    # Claw position values (OLD CLAW!)
-    # clawOpen = 0
-    # clawAlmostOpen = 500
-    # clawHalfCrossed = 640
-    # clawMiddle = 650
-    # clawStacked = 1080
-    # clawRedHalfOpen = 1400
-    # clawGreenHalfOpen = 1550
-    # clawCrossed = 2047
-
-    armUp = 760
-    armBlockLevel = 1520
-    armMid = 1450
-    armDestack = 1100
-    armTilted = 1300
-
-    clawOpen = 750
-    clawClosed = 150
-
-    # Tophat
-    FRONT_TOPHAT = 0
-    onBlack = 2000
-    TOPHAT_THRESHOLD = 3000
