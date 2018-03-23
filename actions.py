@@ -45,7 +45,11 @@ def driveOutStartBox():
     if c.IS_BLUE_BOT:
         mpp.drive_timed(100, 79, 2.6)
     else: #IS_ORANGE_BOT
-        mpp.drive_speed(16, 100)
+        # mpp.drive_timed(85, 105, 2.7)
+        mpp.drive_speed(40, 90)
+
+
+
 
 #Code assumes that you are already lined up with the first block
 #You may need to change the length of the line follow based on position
@@ -59,7 +63,7 @@ def seeBlocks():
         print("found green")
     else:
         print("Did not find cube")
-        u.DEBUG()
+
 
 def driveToSecondBlock():
     #Has failed multiple times
@@ -69,7 +73,7 @@ def driveToSecondBlock():
     else: #IS_ORANGE_BOT
         #mpp.drive_speed(22, 100)
         #Please make this smoother
-        x.lineFollowBounce(7.3, c.SIDE_TOPHAT)
+        x.lineFollowBounce(6.85, c.SIDE_TOPHAT)
     # do something here
     # p.checkColor(colorOrder)
     # p.determineOrder(colorOrder)
@@ -135,7 +139,7 @@ def goYellowFirst():
     if c.IS_BLUE_BOT:
         x.lineFollowLeft(5.5)
     else:
-        x.lineFollowLeft(4)
+        x.lineFollowLeft(5)
     mpp.rotate(90, 30)
     mpp.drive_speed(9, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
