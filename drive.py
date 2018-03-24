@@ -36,13 +36,11 @@ def lineFollowRight(time):
             drive(45,60)
     drive(0,0)
 
-def lineFollowBounce(time, port):
-    sec = seconds()
-    while (seconds() - sec < time):
-        if(analog(port) > c.TOPHAT_THRESHOLD):
-            drive(50, 100)
-        elif(analog(port) < 500):
-            drive(100,50)
+def lineFollowCondition(testFunction, state):
+    print "lineFollowCondition"
+    while testFunction() is state:
+        if (u.onBlackFront()):
+            drive(70, 100)
         else:
-            drive(100,100)
-        drive(0, 0)
+            drive(100, 70)
+    drive(0, 0)

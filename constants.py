@@ -72,6 +72,7 @@ if IS_ORANGE_BOT:
     frisbeeArmUp = 1290
     frisbeeArmDown = 1980
     frisbeeArmGrab = 1256
+    frisbeeArmPickUp = 1000
     frisbeeArmStartPosition = 884
 
     #Frisbee grabber posistion values
@@ -81,7 +82,7 @@ if IS_ORANGE_BOT:
 
     #Tophat
     FRONT_TOPHAT = 0
-    SIDE_TOPHAT = 1
+    LEFT_TOPHAT = 1
     TOPHAT_THRESHOLD = 2000
 
 else: # Blue Bot
