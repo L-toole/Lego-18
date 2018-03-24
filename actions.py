@@ -120,7 +120,6 @@ def driveToCenter():
     mpp.drive_speed(11, 50)
     mpp.pivot_right(-90, 50)
 
-#WORKS!
 def goYellowFirst():
     print('Going to yellow first position.')
     mpp.rotate(90, 20)
@@ -132,18 +131,18 @@ def goYellowFirst():
     mpp.drive_speed(9, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
-    mpp.drive_speed(.5, 50)
+    mpp.drive_speed(.5, 50)#2.5
     u.move_servo(c.servoArm, c.armDestack)
     u.move_servo(c.servoClaw, c.clawClosed)
     u.move_servo(c.servoArm, c.armUp)
-    mpp.drive_speed(-5, 30)
+    mpp.drive_speed(-5, 30)#-6.5
     msleep(500)
-    mpp.rotate(-90, 30)
+    mpp.rotate(-90, 30)#88?
     if c.IS_ORANGE_BOT:
         mpp.drive_speed(12, 50)
     else:
         mpp.drive_speed(10, 50)
-    mpp.rotate(96, 30)
+    mpp.rotate(96, 30)#90?
     msleep(200)
     mpp.drive_speed(3.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -151,18 +150,10 @@ def goYellowFirst():
     mpp.drive_speed(2, 50)
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
-    mpp.drive_speed(-6, 50)
-    #start of going to get frisbee
-    '''mpp.drive_till_black(-50, -50)
-    mpp.drive_speed(-5, 60)
-    u.move_servo(3, 1250, 10)
-    mpp.rotate(94, 50)
-    mpp.drive_speed(-18.5,50)
-    mpp.drive_speed(2.8, 50)
-    mpp.rotate(-82, 50)
-    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmGrab)'''
+    #Different pattern
+    mpp.drive_speed(-9, 50)
+    mpp.arc_radius(90, 3, -60)
 
-#WORKS!
 def goYellowSecond():
     print('Going to yellow second position.')
     # Drive speed or sensor
@@ -196,9 +187,10 @@ def goYellowSecond():
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
+    mpp.drive_speed(-6, 60)
+    mpp.rotate(-90, 60)
     #start of going to get frisbee
 
-#WORKS!!!
 def goYellowThird():
     print('Going to yellow third position.')
     mpp.rotate(-70, 50)
@@ -227,6 +219,8 @@ def goYellowThird():
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
+    mpp.drive_speed(-6, 60)
+    mpp.rotate(-90, 60)
 
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
     p.determineOrder(colorOrder)
@@ -239,19 +233,18 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
 
 def driveToFrisbees():
     print ("Driving to frisbees")
-    mpp.drive_speed(-6, 60)
-    mpp.rotate(-90, 60)
     x.lineFollowCondition(leftOnBlack, False)
-    mpp.rotate(90, 60)
+    msleep(500)
+    mpp.rotate(90, 30)
     msleep(500)
     mpp.drive_speed(-12, 60)
     msleep(500)
-    mpp.rotate(90, 60)
+    mpp.rotate(90, 30)
     msleep(500)
     mpp.drive_speed(-17, 60)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmUp)
     mpp.drive_speed(2.5, 60)
-    mpp.rotate(-90, 60)
+    mpp.rotate(-90, 30)
     mpp.drive_speed(-3.5, 50)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmPickUp)
     u.DEBUG()
