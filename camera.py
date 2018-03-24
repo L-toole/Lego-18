@@ -106,6 +106,13 @@ def determineOrder(list):
         list.append(c.GREEN)
         print("Added Green")
     else:
+        #ALERT: FIX THIS!!
+        #Right now this code returns an error on line 115 because there is no list[2]
+        #The goal is to make it so that the final position is filled with one of the two final possible values, and
+        #    the zero spot is filled with the other one
+        #If all three spots are zero, select random colors for each, so that the list is filled with 3 different colors
+        #-----This method should have three non zero values by the end of it-----
+        #list.append()   <--- this is how you add to the list
         print("Added nothing :( ")
 
     print(list)

@@ -17,7 +17,6 @@ def main():
     act.seeBlocksTwo()
     act.driveToCrates()
     act.driveToYellow()
-    act.driveToFrisbees()
     u.DEBUG()
     # act.driveToCenter()
     # act.driveToYellow()
