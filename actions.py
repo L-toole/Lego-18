@@ -11,7 +11,7 @@ def init():
     #starting positions
     #START WITH CLAW UP/OPEN!!!!!!!!!
     if c.IS_ORANGE_BOT:
-        print("I AM ORANGE BOT!")
+        print("I AM ORANGE GAL!")
     elif c.IS_BLUE_BOT:
         print("I AM BLUE BOT!")
     else:
@@ -28,6 +28,7 @@ def selfTest():
     enable_servos()
     print ("Hola amigas")
     u.move_servo(c.servoArm, c.armMid)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
     mpp.drive_condition(30, 30, leftOnBlack, False)
     msleep(500)
     mpp.drive_condition(-30, -30, onBlack, False)
@@ -39,6 +40,7 @@ def selfTest():
     u.move_servo(c.servoArm, c.armStartBoxPosition)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
+    mpp.drive_timed(-70, -70, 1)
 
 def driveOutStartBox():
     #drives out of start box to pom
@@ -165,8 +167,9 @@ def goYellowSecond():
     u.move_servo(c.servoArm, c.armUp)
     u.move_servo(c.servoClaw, c.clawClosed)
     mpp.pivot_right(-180, 30)
-    mpp.drive_speed(2, 40)
+    mpp.drive_speed(2, 35)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown, 5)
+    u.DEBUG()
 
 def goYellowThird():
     print('Going to yellow third position.')
@@ -189,8 +192,10 @@ def dropOffCrates():
     u.move_servo(c.servoClaw, c.clawOpen)
     mpp.drive_speed(1.5, 50)  # .5
     u.move_servo(c.servoArm, c.armDestack)
+    mpp.rotate(5, 10)
     u.move_servo(c.servoClaw, c.clawClosed)
     u.move_servo(c.servoArm, c.armUp)
+    mpp.rotate(-5, 10)
     mpp.drive_speed(-6, 30)  # -5
     msleep(500)
     mpp.rotate(-88, 30)  # 90
@@ -209,6 +214,7 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
     if colorOrder[0] == c.YELLOW:
         goYellowFirst()
         #Need these because the pattern for Yellow 2 is different
+        u.DEBUG()
         driveToFrisbees()
         dropOffFrisbee()
     elif colorOrder[1] == c.YELLOW:

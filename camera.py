@@ -2,7 +2,7 @@ from wallaby import *
 import constants as c
 import motorsPlusPlus as x
 import actions as a
-
+import utils as u
 
 def cameraInit():
     #Initializes/Opens up camera
@@ -113,7 +113,8 @@ def determineOrder(list):
         #If all three spots are zero, select random colors for each, so that the list is filled with 3 different colors
         #-----This method should have three non zero values by the end of it-----
         #list.append()   <--- this is how you add to the list
-        print("Added nothing :( ")
+        print("*** DIDN'T SEE BLOCKS")
+        u.DEBUG()
 
     print(list)
     print("final order: " + str([colorDefine(list[0]), colorDefine(list[1]), colorDefine(list[2])]))
