@@ -104,6 +104,7 @@ def driveToCrates():
         x.lineFollowRight(3.2)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
+    u.DEBUG()
     u.move_servo(c.servoArm, c.armMid, 4)
     msleep(500)
     if c.IS_ORANGE_BOT:
