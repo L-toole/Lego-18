@@ -11,7 +11,7 @@ def init():
     #starting positions
     #START WITH CLAW UP/OPEN!!!!!!!!!
     if c.IS_ORANGE_BOT:
-        print("I AM ORANGE GAL!")
+        print("I AM ORANGE BOT!")
     elif c.IS_BLUE_BOT:
         print("I AM BLUE BOT!")
     else:
@@ -118,10 +118,10 @@ def driveToCenter():
     mpp.drive_speed(4, 50)
     mpp.rotate(50, 40)
     mpp.drive_speed(24.5, 50)
-    mpp.pivot_right(-15, 50)
-    mpp.pivot_right(57, 50)
+    mpp.pivot_right(-15, 30)
+    mpp.pivot_right(57, 30)
     mpp.drive_speed(11, 50)
-    mpp.pivot_right(-90, 50)
+    mpp.pivot_right(-90, 30)
 
 def goYellowFirst():
     print('Going to yellow first position.')
@@ -155,7 +155,8 @@ def goYellowSecond():
     mpp.drive_condition(50, 50, onBlack, False)
     mpp.drive_condition(50, 50, onBlack, True)
     mpp.rotate(90, 30)
-    x.lineFollowRight(10.5)
+    #line follow middle line to yellow
+    x.lineFollowRight(10.4)
     mpp.rotate(-90, 30)
     mpp.drive_speed(3, 50)
     mpp.drive_condition(40, 40, onBlack, False)
@@ -165,11 +166,13 @@ def goYellowSecond():
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
     msleep(200)
+    #drop off frisbee
     u.move_servo(c.servoArm, c.armUp)
     u.move_servo(c.servoClaw, c.clawClosed)
     mpp.pivot_right(-180, 30)
-    mpp.drive_speed(2, 35)
-    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown, 5)
+    #u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown, 5)
+    mpp.rotate(90, 30)
+    mpp.drive_speed(5, 50)
     u.DEBUG()
 
 def goYellowThird():
@@ -214,8 +217,6 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
     p.determineOrder(colorOrder)
     if colorOrder[0] == c.YELLOW:
         goYellowFirst()
-        #Need these because the pattern for Yellow 2 is different
-        u.DEBUG()
         driveToFrisbees()
         dropOffFrisbee()
     elif colorOrder[1] == c.YELLOW:
