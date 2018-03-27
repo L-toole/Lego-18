@@ -82,6 +82,8 @@ def seeBlocksTwo():
         print("found green")
     else:
         print("Did not find cube")
+    p.determineOrder(colorOrder)
+
 
 def driveToCrates():
     print ("Driving to crates")
@@ -104,7 +106,6 @@ def driveToCrates():
         x.lineFollowRight(3.2)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
-    u.DEBUG()
     u.move_servo(c.servoArm, c.armMid, 4)
     msleep(500)
     if c.IS_ORANGE_BOT:
@@ -181,6 +182,8 @@ def goYellowThird():
     x.lineFollowLeft(6)
     mpp.rotate(-90, 40)
     mpp.drive_condition(60,60,u.onBlackFront, False)
+    msleep(8000)    #waiting for create
+    print("waiting for create")
     dropOffCrates()
     mpp.drive_speed(1, 50)
     mpp.drive_speed(-3, 50)
@@ -214,7 +217,6 @@ def dropOffCrates():
     u.move_servo(c.servoClaw, c.clawFullyOpen)
 
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
-    p.determineOrder(colorOrder)
     if colorOrder[0] == c.YELLOW:
         goYellowFirst()
         driveToFrisbees()

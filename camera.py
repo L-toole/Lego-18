@@ -81,6 +81,7 @@ def colorValue(color):
     print(", y=" + str(get_object_center_y(color, 0))),
     print(", area=" + str(get_object_area(color, 0)))
 
+
 def colorDefine(color):
     #Converts channel number to color
     if color==c.ORANGE:
@@ -92,30 +93,27 @@ def colorDefine(color):
     elif color==c.YELLOW:
         return "YELLOW"
 
-def determineOrder(list):
-    #Logic to determine which color block is in which place
-    #If one of the first two spots checked is empty, robot drives to final scoring zone to check last color
-    #Prints a list with order of colors
-    if c.RED in list and c.GREEN in list:
-        list.append(c.YELLOW)
-        print("Added Yellow")
-    elif c.GREEN in list and c.YELLOW in list:
-        list.append(c.RED)
-        print("Added Red")
-    elif c.RED in list and c.YELLOW in list:
-        list.append(c.GREEN)
-        print("Added Green")
-    else:
-        #ALERT: FIX THIS!!
-        #Right now this code returns an error on line 115 because there is no list[2]
-        #The goal is to make it so that the final position is filled with one of the two final possible values, and
-        #    the zero spot is filled with the other one
-        #If all three spots are zero, select random colors for each, so that the list is filled with 3 different colors
-        #-----This method should have three non zero values by the end of it-----
-        #list.append()   <--- this is how you add to the list
-        print("*** DIDN'T SEE BLOCKS")
-        u.DEBUG()
 
+def determineOrder(list):
+    options=[c.YELLOW,c.RED,c.GREEN]
+    #Logic to determine which color block is in which place
+    #(work in progress) If one of the first two spots checked is empty, robot drives to final scoring zone to check last color
+    #Prints a list with order of colors
+
+    for color in list:      #removes colors detected by camera
+        if color in options:
+            options.remove(color)
+
+    for i in range(len(list)):      #replaces any unknown colors
+        if list[i] == 0:
+            guess = options.pop()
+            print("cannot see color, added " + str(guess))
+            list[i]=guess
+
+    if len(list) < 3:               #adds last color based off of remaining options
+        last = options.pop()
+        print("Added " + str(last))
+        list.append(last)
     print(list)
     print("final order: " + str([colorDefine(list[0]), colorDefine(list[1]), colorDefine(list[2])]))
 
