@@ -150,7 +150,7 @@ def timedLineFollowLeftSmooth(time):
         msleep(10)
 
 
-def timedLineFollowLeftBack(time):  # follows on starboard side
+'''def timedLineFollowLeftBack(time):  # follows on starboard side
     sec = seconds() + time
     while seconds() < sec:
         if onBlackBack():
@@ -160,18 +160,17 @@ def timedLineFollowLeftBack(time):  # follows on starboard side
         msleep(10)
 
 
+def crossBlackBack():
+    while not onBlackBack():  # wait for black
+        pass
+    while onBlackBack():  # wait for white
+        pass
+    ao()'''
+
+
 def crossBlackFront():
     while not onBlackFront():  # wait for black
         pass
     while onBlackFront():  # wait for white
         pass
     ao()
-
-
-def crossBlackBack():
-    while not onBlackBack():  # wait for black
-        pass
-    while onBlackBack():  # wait for white
-        pass
-    ao()
-

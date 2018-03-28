@@ -18,7 +18,6 @@ def init():
         print("I AM YELLOW BOT! !!!!!!!!!!")
         u.DEBUG()  # do not remove
     selfTest()
-    enable_servos()
     p.cameraInit()
     msleep(100)
     u.waitForButton()
@@ -30,6 +29,10 @@ def selfTest():
     u.move_servo(c.servoArm, c.armMid)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
     mpp.drive_condition(30, 30, leftOnBlack, False)
+    msleep(500)
+    mpp.drive_condition(-30, -30, onBlack, False)
+    msleep(500)
+    mpp.drive_condition(30, 30, rightOnBlack, False)
     msleep(500)
     mpp.drive_condition(-30, -30, onBlack, False)
     mpp.rotate(-20, 30)
@@ -182,17 +185,13 @@ def goYellowThird():
     x.lineFollowLeft(6)
     mpp.rotate(-90, 40)
     mpp.drive_condition(60,60,u.onBlackFront, False)
-    msleep(8000)    #waiting for create
-    print("waiting for create")
-    dropOffCrates()
+    dropOffFarCrates()
     mpp.drive_speed(1, 50)
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     mpp.drive_speed(-6, 50)
     mpp.drive_speed(-6, 60)
-    mpp.rotate(-90, 60)
-    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown, 5)
-
+    mpp.rotate(90, 30)
 
 def dropOffCrates():
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -216,6 +215,31 @@ def dropOffCrates():
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
 
+def dropOffFarCrates():
+    u.move_servo(c.servoArm, c.armBlockLevel)
+    u.move_servo(c.servoClaw, c.clawOpen)
+    mpp.drive_speed(1.5, 50)  # .5
+    u.move_servo(c.servoArm, c.armDestack)
+    mpp.rotate(5, 10)
+    msleep(8000)  # waiting for create
+    print("waiting for create")
+    u.move_servo(c.servoClaw, c.clawClosed)
+    u.move_servo(c.servoArm, c.armUp)
+    mpp.rotate(-5, 10)
+    mpp.drive_speed(-6, 30)  # -5
+    msleep(500)
+    mpp.rotate(-88, 30)  # 90
+    if c.IS_ORANGE_BOT:
+        mpp.drive_speed(12, 50)
+    else:
+        mpp.drive_speed(10, 50)
+    mpp.rotate(90, 30)  # 96
+    msleep(200)
+    mpp.drive_speed(3.5, 50)
+    u.move_servo(c.servoArm, c.armBlockLevel)
+    u.move_servo(c.servoClaw, c.clawFullyOpen)
+
+
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
     if colorOrder[0] == c.YELLOW:
         goYellowFirst()
@@ -225,13 +249,14 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
         goYellowSecond()
     elif colorOrder[2] == c.YELLOW:
         goYellowThird()
-        driveToFrisbees()
-        dropOffFrisbee()
+        driveToFarFrisbees()
+        u.DEBUG()
+        dropOffFarFrisbee()
 
 def driveToFrisbees():
     print ("Driving to frisbees")
     x.lineFollowCondition(leftOnBlack, False)
-    mpp.drive_speed(1, 30)
+    mpp.drive_speed(4, 30) #was 1 inch
     msleep(200)
     mpp.rotate(90, 30)
     msleep(200)
@@ -242,7 +267,7 @@ def driveToFrisbees():
     msleep(200)
     mpp.rotate(90, 30)
     msleep(200)
-    mpp.drive_speed(-17, 60)
+    mpp.drive_speed(-12, 60) #was 17 inches
     msleep(200)
     mpp.drive_speed(2.5, 60)
     mpp.rotate(-90, 30)
@@ -250,6 +275,9 @@ def driveToFrisbees():
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmPickUp)
     mpp.drive_speed(-2.5, 20)
     msleep(300)
+
+def driveToFarFrisbees():
+    print ("Driving to frisbees")
 
 def dropOffFrisbee():
     u.move_servo(c.servoArm, c.armUp)
@@ -262,12 +290,21 @@ def dropOffFrisbee():
     mpp.rotate(90, 30)
     x.lineFollowLeft(3.7)
     mpp.rotate(90, 30)
-    mpp.drive_speed(-8, 30)
+    mpp.drive_speed(-5, 30) #was 8 inches
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown, 5)
 
+def dropOffFarFrisbee():
+    u.move_servo(c.servoArm, c.armUp)
+    u.move_servo(c.servoClaw, c.clawClosed)
 
 def onBlack():
     return analog(c.FRONT_TOPHAT) > c.TOPHAT_THRESHOLD
 
 def leftOnBlack():
     return analog(c.LEFT_TOPHAT) > c.TOPHAT_THRESHOLD
+
+def rightOnBlack():
+    return analog(c.RIGHT_TOPHAT) > c.TOPHAT_THRESHOLD
+
+
+

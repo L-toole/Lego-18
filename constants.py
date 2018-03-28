@@ -119,8 +119,10 @@ else:  # Blue Bot
 if IS_ORANGE_BOT:
     FRONT_TOPHAT = 0
     LEFT_TOPHAT = 1
+    RIGHT_TOPHAT = 2
     TOPHAT_THRESHOLD = 2000
 else: # Blue Bot
     FRONT_TOPHAT = 0
     LEFT_TOPHAT = 1
+    RIGHT_TOPHAT = 2
     TOPHAT_THRESHOLD = 3000

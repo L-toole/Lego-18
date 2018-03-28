@@ -36,6 +36,7 @@ def lineFollowRight(time):
             drive(45,60)
     drive(0,0)
 
+
 def lineFollowCondition(testFunction, state):
     print "lineFollowCondition"
     while testFunction() is state:
@@ -44,3 +45,6 @@ def lineFollowCondition(testFunction, state):
         else:
             drive(100, 70)
     drive(0, 0)
+
+def rightOnBlack():
+    return analog(c.RIGHT_TOPHAT) > c.TOPHAT_THRESHOLD
