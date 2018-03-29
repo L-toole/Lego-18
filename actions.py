@@ -102,7 +102,7 @@ def driveToCrates():
     else: #IS_BLUE_BOT
         mpp.drive_speed(1, 50)
         mpp.pivot_right(85, 50)
-    msleep(1000)
+    #msleep(1000)
     if c.IS_ORANGE_BOT:
         x.lineFollowRight(3)
     else: #IS_BLUE_BOT
@@ -185,13 +185,8 @@ def goYellowThird():
     x.lineFollowLeft(6)
     mpp.rotate(-90, 40)
     mpp.drive_condition(60,60,u.onBlackFront, False)
-    dropOffFarCrates()
-    mpp.drive_speed(1, 50)
-    mpp.drive_speed(-3, 50)
-    mpp.drive_speed(4, 50)
-    mpp.drive_speed(-6, 50)
-    mpp.drive_speed(-6, 60)
-    mpp.rotate(90, 30)
+    dropOffFarCrate1()
+    dropOffFarCrate2()
 
 def dropOffCrates():
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -215,17 +210,18 @@ def dropOffCrates():
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
 
-def dropOffFarCrates():
+def dropOffFarCrate1():
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
-    mpp.drive_speed(1.5, 50)  # .5
     u.move_servo(c.servoArm, c.armDestack)
-    mpp.rotate(5, 10)
-    msleep(8000)  # waiting for create
+    mpp.rotate(5,10)
+    u.move_servo(c.servoClaw, c.clawClosed,20)
+    msleep(1000)
+    u.move_servo(c.servoArm, c.armUp,20)
+    msleep(3000)  # waiting for create
     print("waiting for create")
-    u.move_servo(c.servoClaw, c.clawClosed)
-    u.move_servo(c.servoArm, c.armUp)
-    mpp.rotate(-5, 10)
+
+def dropOffFarCrate2():
     mpp.drive_speed(-6, 30)  # -5
     msleep(500)
     mpp.rotate(-88, 30)  # 90
@@ -238,6 +234,10 @@ def dropOffFarCrates():
     mpp.drive_speed(3.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
+    mpp.drive_speed(1, 50)
+    mpp.drive_speed(-3, 50)
+    mpp.drive_speed(4, 50)
+    mpp.drive_speed(-6, 50)
 
 
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
@@ -278,6 +278,23 @@ def driveToFrisbees():
 
 def driveToFarFrisbees():
     print ("Driving to frisbees")
+    u.move_servo(c.servoArm,c.armUp)
+    mpp.pivot_right(-35,100)
+    mpp.drive_condition(-75, -75,leftOnBlack, False)
+    motor_power(c.RMOTOR, 100)
+    while not u.onBlackFront():
+        pass
+    ao()
+    mpp.drive_condition(100,100,rightOnBlack,False)
+    mpp.pivot_left(-35,100)
+    motor_power(c.LMOTOR,100)
+    while not u.onBlackFront():
+        pass
+    ao()
+    # mpp.drive_speed(-6, 60)
+    # mpp.rotate(90, 30)
+
+
 
 def dropOffFrisbee():
     u.move_servo(c.servoArm, c.armUp)
