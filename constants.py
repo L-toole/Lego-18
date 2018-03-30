@@ -4,7 +4,7 @@ import wallaby as w
 startTime = -1
 
 # Motor ports
-LMOTOR = 3
+LMOTOR = 2
 RMOTOR = 0
 
 # Digital ports
@@ -27,7 +27,7 @@ WHEEL_DISTANCE = 5.50 #205 - 4.25  # Distance between the two wheels
 
 if IS_ORANGE_BOT:
     INCHES_TO_TICKS = 195 #larger numbers = longer drive
-    lAdjust =  0.922 #1.12 #.99 # adjust left wheel counter to fix drift; Larger number makes the robot drive left...?
+    lAdjust =  0.89#1.12 #.99 # adjust left wheel counter to fix drift; Larger number makes the robot drive left...?
 else: # Blue Bot
     INCHES_TO_TICKS = 205
     lAdjust = 1.02  # adjust left wheel counter to fix drift
@@ -71,9 +71,9 @@ if IS_ORANGE_BOT:
     clawFullyOpen = 1800
     clawClosed = 840
 else:  # Blue Bot
-    clawOpen = 1500
+    clawOpen = 870
     clawFullyOpen = 1800
-    clawClosed = 840
+    clawClosed = 520
 
 #Arm posistion values
 if IS_ORANGE_BOT:
@@ -125,4 +125,4 @@ else: # Blue Bot
     FRONT_TOPHAT = 0
     LEFT_TOPHAT = 1
     RIGHT_TOPHAT = 2
-    TOPHAT_THRESHOLD = 3000
+    TOPHAT_THRESHOLD = 2700

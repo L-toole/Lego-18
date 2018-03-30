@@ -90,23 +90,23 @@ def seeBlocksTwo():
 
 def driveToCrates():
     print ("Driving to crates")
-    if c.IS_ORANGE_BOT:
-        pass
-    else:
-        mpp.drive_speed(-.5, 40)
+    #if c.IS_ORANGE_BOT:
+    #    pass
+    #else:
+    #    mpp.drive_speed(-.5, 40)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
     if c.IS_ORANGE_BOT:
         mpp.pivot_right(84, 30)
         mpp.drive_till_black(60, 60)
     else: #IS_BLUE_BOT
-        mpp.drive_speed(1, 50)
-        mpp.pivot_right(85, 50)
+        mpp.drive_speed(2, 50)
+        mpp.pivot_right(80, 50)
     #msleep(1000)
     if c.IS_ORANGE_BOT:
-        x.lineFollowRight(3)
+        x.lineFollowRight(2.5)
     else: #IS_BLUE_BOT
-        x.lineFollowRight(3.2)
+        x.lineFollowRight(2.25)#needs to be longer
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
     u.move_servo(c.servoArm, c.armMid, 4)
@@ -182,7 +182,7 @@ def goYellowSecond():
 def goYellowThird():
     print('Going to yellow third position.')
     mpp.rotate(-70, 50)
-    x.lineFollowLeft(6)
+    x.lineFollowRight(6)
     mpp.rotate(-90, 40)
     mpp.drive_condition(60,60,u.onBlackFront, False)
     dropOffFarCrate1()
@@ -211,10 +211,11 @@ def dropOffCrates():
     u.move_servo(c.servoClaw, c.clawFullyOpen)
 
 def dropOffFarCrate1():
+    mpp.drive_condition(-10, -10, onBlack, True)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
     u.move_servo(c.servoArm, c.armDestack)
-    mpp.rotate(5,10)
+    #mpp.rotate(-2,10)
     u.move_servo(c.servoClaw, c.clawClosed,20)
     msleep(1000)
     u.move_servo(c.servoArm, c.armUp,20)
@@ -225,13 +226,14 @@ def dropOffFarCrate2():
     mpp.drive_speed(-6, 30)  # -5
     msleep(500)
     mpp.rotate(-88, 30)  # 90
+    #SHOULD BE LINE FOLLOW
     if c.IS_ORANGE_BOT:
         mpp.drive_speed(12, 50)
     else:
         mpp.drive_speed(10, 50)
     mpp.rotate(90, 30)  # 96
     msleep(200)
-    mpp.drive_speed(3.5, 50)
+    mpp.drive_condition(50,50, u.onBlackFront, False)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
     mpp.drive_speed(1, 50)
@@ -286,11 +288,13 @@ def driveToFarFrisbees():
         pass
     ao()
     mpp.drive_condition(100,100,rightOnBlack,False)
-    mpp.pivot_left(-35,100)
-    motor_power(c.LMOTOR,100)
+    #not done yet
+    motor_power(c.LMOTOR, 100)
+    msleep(1000)
     while not u.onBlackFront():
         pass
     ao()
+    mpp.drive_speed(-12,100)
     # mpp.drive_speed(-6, 60)
     # mpp.rotate(90, 30)
 

@@ -107,7 +107,6 @@ def timedLineFollowLeft(time):
             d.driveTimed(90, 20, 20)
         msleep(10)
 
-
 # Follows black line on right for specified amount of time
 def timedLineFollowRight(time):
     sec = seconds() + time

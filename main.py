@@ -10,6 +10,8 @@ import motorsPlusPlus as mpp
 
 def main():
     print ("Running")
+    #mpp.drive_speed(36,100)
+    #u.DEBUG()
     act.init()
     act.driveOutStartBox()
     act.seeBlocks()
