@@ -13,7 +13,7 @@ ROBOT_ID_BLUE = 1
 
 RIGHT_BUTTON = 13
 
-#Analog ports
+# Analog ports
 
 
 IS_YELLOW_BOT = w.digital(ROBOT_ID_YELLOW)
@@ -27,10 +27,10 @@ WHEEL_DISTANCE = 5.50 #205 - 4.25  # Distance between the two wheels
 
 if IS_ORANGE_BOT:
     INCHES_TO_TICKS = 195 #larger numbers = longer drive
-    lAdjust =  0.89#1.12 #.99 # adjust left wheel counter to fix drift; Larger number makes the robot drive left...?
+    lAdjust =  0.875 # 1.12 # .99  # adjust left wheel counter to fix drift; Larger number makes the robot drive left...?
 else: # Blue Bot
-    INCHES_TO_TICKS = 205
-    lAdjust = 1.02  # adjust left wheel counter to fix drift
+    INCHES_TO_TICKS = 197
+    lAdjust = 1.00  # adjust left wheel counter to fix drift
 
 # Servos
 if IS_ORANGE_BOT:
@@ -120,6 +120,7 @@ if IS_ORANGE_BOT:
     FRONT_TOPHAT = 0
     LEFT_TOPHAT = 1
     RIGHT_TOPHAT = 2
+    BACK_TOPHAT= 5
     TOPHAT_THRESHOLD = 2000
 else: # Blue Bot
     FRONT_TOPHAT = 0

@@ -18,7 +18,7 @@ def drive(left, right):
     motor(c.LMOTOR,left)
     motor(c.RMOTOR,right)
 
-def lineFollowLeft(time):
+def lineFollowLeft(time): #robot is to the left of the line
     sec = seconds()
     while(seconds()-sec<time):
         if(u.onBlackFront()):
@@ -27,7 +27,7 @@ def lineFollowLeft(time):
             drive(60,45) #was 45
     drive(0,0)
 
-def lineFollowRight(time):
+def lineFollowRight(time):  #robot is to the right of the line
     sec = seconds()
     while(seconds()-sec<time):
         if(u.onBlackFront()):
@@ -44,6 +44,15 @@ def lineFollowCondition(testFunction, state):
             drive(70, 100)
         else:
             drive(100, 70)
+    drive(0, 0)
+
+def lineFollowConditionSlow(testFunction, state):
+    print "lineFollowCondition"
+    while testFunction() is state:
+        if (u.onBlackFront()):
+            drive(60, 45)
+        else:
+            drive(45, 60)
     drive(0, 0)
 
 def rightOnBlack():

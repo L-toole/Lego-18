@@ -8,8 +8,8 @@ import camera as p
 colorOrder = []
 
 def init():
-    #starting positions
-    #START WITH CLAW UP/OPEN!!!!!!!!!
+    # starting positions
+    # START WITH CLAW UP/OPEN!!!!!!!!!
     if c.IS_ORANGE_BOT:
         print("I AM ORANGE BOT!")
     elif c.IS_BLUE_BOT:
@@ -72,7 +72,7 @@ def driveToSecondBlock():
         # mpp.drive_speed(22, 100)
         mpp.drive_speed(22.5, 90)
     else: #IS_BLUE_BOT
-        mpp.drive_timed(100, 77, 3.4)
+        mpp.drive_speed(21,90)
 
 # Code assumes that you are already lined up with the middle block
 def seeBlocksTwo():
@@ -100,21 +100,23 @@ def driveToCrates():
         mpp.pivot_right(84, 30)
         mpp.drive_till_black(60, 60)
     else: #IS_BLUE_BOT
-        mpp.drive_speed(2, 50)
         mpp.pivot_right(80, 50)
+        mpp.drive_till_black(60,60)
     #msleep(1000)
     if c.IS_ORANGE_BOT:
-        x.lineFollowRight(2.5)
+        x.lineFollowConditionSlow(backOnBlack, False)
+        u.move_servo(c.servoClaw,c.clawOpen+100)
+        mpp.drive_timed(50, 30, 0.8)
     else: #IS_BLUE_BOT
-        x.lineFollowRight(2.25)#needs to be longer
+        x.lineFollowRight(2.8)#needs to be longer
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
     u.move_servo(c.servoArm, c.armMid, 4)
     msleep(500)
     if c.IS_ORANGE_BOT:
-        mpp.drive_speed(-6.5, 40)
+        mpp.drive_condition(-90,-100, leftOnBlack, False)
     else:
-        mpp.drive_speed(-5, 40)
+        mpp.drive_speed(-7, 40)
     u.move_servo(c.servoArm, c.armHighMid, 4)
 
 def driveToCenter():
@@ -211,8 +213,9 @@ def dropOffCrates():
     u.move_servo(c.servoClaw, c.clawFullyOpen)
 
 def dropOffFarCrate1():
-    mpp.drive_condition(-10, -10, onBlack, True)
+    #mpp.drive_condition(-10, -10, onBlack, True)
     u.move_servo(c.servoArm, c.armBlockLevel)
+    mpp.drive_speed(0.5,50)
     u.move_servo(c.servoClaw, c.clawOpen)
     u.move_servo(c.servoArm, c.armDestack)
     #mpp.rotate(-2,10)
@@ -223,14 +226,20 @@ def dropOffFarCrate1():
     print("waiting for create")
 
 def dropOffFarCrate2():
-    mpp.drive_speed(-6, 30)  # -5
-    msleep(500)
-    mpp.rotate(-88, 30)  # 90
-    #SHOULD BE LINE FOLLOW
     if c.IS_ORANGE_BOT:
-        mpp.drive_speed(12, 50)
+        mpp.drive_condition(-100, -100, rightOnBlack, False)
+        motor_power(c.LMOTOR, 100)
+        msleep(1000)
+        while not u.onBlackFront():
+            pass
+        ao()
+        x.lineFollowLeft(1.8)
     else:
-        mpp.drive_speed(10, 50)
+        # SHOULD BE LINE FOLLOW
+        mpp.drive_speed(-6, 30)  # -5
+        msleep(500)
+        mpp.rotate(-88, 30)  # 90
+        # mpp.drive_speed(10, 50)
     mpp.rotate(90, 30)  # 96
     msleep(200)
     mpp.drive_condition(50,50, u.onBlackFront, False)
@@ -284,19 +293,18 @@ def driveToFarFrisbees():
     mpp.pivot_right(-35,100)
     mpp.drive_condition(-75, -75,leftOnBlack, False)
     motor_power(c.RMOTOR, 100)
+    msleep(500)
+    motor_power(c.RMOTOR,75)
     while not u.onBlackFront():
         pass
     ao()
     mpp.drive_condition(100,100,rightOnBlack,False)
-    #not done yet
     motor_power(c.LMOTOR, 100)
     msleep(1000)
     while not u.onBlackFront():
         pass
     ao()
-    mpp.drive_speed(-12,100)
-    # mpp.drive_speed(-6, 60)
-    # mpp.rotate(90, 30)
+    mpp.drive_speed(-24,100)
 
 
 
@@ -327,5 +335,6 @@ def leftOnBlack():
 def rightOnBlack():
     return analog(c.RIGHT_TOPHAT) > c.TOPHAT_THRESHOLD
 
-
+def backOnBlack():
+    return analog(c.BACK_TOPHAT) > c.TOPHAT_THRESHOLD
 
