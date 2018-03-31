@@ -20,7 +20,7 @@ def init():
     selfTest()
     p.cameraInit()
     msleep(100)
-    u.waitForButton()
+    u.wait_4_light()
     c.startTime = seconds()
 
 def selfTest():
@@ -28,22 +28,23 @@ def selfTest():
     print ("Hola amigas")
     u.move_servo(c.servoArm, c.armMid)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
-    mpp.drive_condition(30, 30, leftOnBlack, False)
+    mpp.drive_condition(50, 50, leftOnBlack, False)
     msleep(500)
-    mpp.drive_condition(-30, -30, onBlack, False)
+    mpp.drive_condition(-50, -50, onBlack, False)
     msleep(500)
-    mpp.drive_condition(30, 30, rightOnBlack, False)
+    mpp.drive_condition(50, 50, backOnBlack, False)
     msleep(500)
-    mpp.drive_condition(-30, -30, onBlack, False)
+    mpp.drive_condition(-50, -50, rightOnBlack, False)
     mpp.rotate(-20, 30)
     mpp.rotate(20, 30)
     msleep(750)
     u.move_servo(c.servoClaw, c.clawOpen)
     u.move_servo(c.servoClaw, c.clawClosed)
+    u.move_servo(c.servoClaw, c.clawFullyOpen)
     u.move_servo(c.servoArm, c.armStartBoxPosition)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
-    mpp.drive_timed(-70, -70, 1)
+    mpp.drive_timed(-70, -70, 2)
 
 def driveOutStartBox():
     #drives out of start box to pom
@@ -65,6 +66,10 @@ def seeBlocks():
         print("found green")
     else:
         print("Did not find cube")
+    if colorOrder[0] == 3:
+        u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition+250)
+        msleep(300)
+        u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
 
 
 def driveToSecondBlock():
@@ -85,8 +90,11 @@ def seeBlocksTwo():
         print("found green")
     else:
         print("Did not find cube")
+    if colorOrder[1] == 3:
+        u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition+250)
+        msleep(300)
+        u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
     p.determineOrder(colorOrder)
-
 
 def driveToCrates():
     print ("Driving to crates")
@@ -96,27 +104,18 @@ def driveToCrates():
     #    mpp.drive_speed(-.5, 40)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
-    if c.IS_ORANGE_BOT:
-        mpp.pivot_right(84, 30)
-        mpp.drive_till_black(60, 60)
-    else: #IS_BLUE_BOT
-        mpp.pivot_right(80, 50)
-        mpp.drive_till_black(60,60)
+    mpp.pivot_right(84, 30)
+    mpp.drive_till_black(60, 60)
     #msleep(1000)
-    if c.IS_ORANGE_BOT:
-        x.lineFollowConditionSlow(backOnBlack, False)
-        u.move_servo(c.servoClaw,c.clawOpen+100)
-        mpp.drive_timed(50, 30, 0.8)
-    else: #IS_BLUE_BOT
-        x.lineFollowRight(2.8)#needs to be longer
+    x.lineFollowConditionSlow(backOnBlack, False)
+    u.move_servo(c.servoClaw,c.clawOpen+100)
+    mpp.drive_timed(50, 30, 0.8)
     u.move_servo(c.servoClaw, c.clawClosed)
     msleep(600)
     u.move_servo(c.servoArm, c.armMid, 4)
     msleep(500)
-    if c.IS_ORANGE_BOT:
-        mpp.drive_condition(-90,-100, leftOnBlack, False)
-    else:
-        mpp.drive_speed(-7, 40)
+    mpp.drive_condition(-90,-100, leftOnBlack, False)
+        #mpp.drive_speed(-7, 40)
     u.move_servo(c.servoArm, c.armHighMid, 4)
 
 def driveToCenter():
@@ -131,11 +130,11 @@ def driveToCenter():
 
 def goYellowFirst():
     print('Going to yellow first position.')
-    mpp.rotate(90, 20)
-    if c.IS_ORANGE_BOT:
-        x.lineFollowLeft(4.3)#5
-    else: #IS_BLUE_BOT
-        x.lineFollowLeft(5.5)
+    mpp.rotate(90, 30)
+    # Change these to use the corner black line
+    # x.lineFollowCondition(leftOnBlack, False)
+    x.lineFollowLeft(4.3)
+    #Do we need to change to a stop at corner black tape
     mpp.rotate(90, 30)
     mpp.drive_speed(9, 50)
     mpp.drive_condition(-10, -10, onBlack, True)
@@ -153,7 +152,7 @@ def goYellowSecond():
     #Maybe break this function up
     print('Going to yellow second position.')
     # Drive speed or sensor
-    mpp.rotate(90, 10)
+    mpp.rotate(90, 30)
     driveToFrisbees()
     mpp.drive_speed(8, 50)
     mpp.drive_condition(50, 50, onBlack, False)
@@ -162,7 +161,9 @@ def goYellowSecond():
     mpp.drive_condition(50, 50, onBlack, True)
     mpp.rotate(90, 30)
     #line follow middle line to yellow
-    x.lineFollowRight(10.4)
+    x.lineFollowRight(3.2)
+    msleep(5000)
+    x.lineFollowRight(7.2)
     mpp.rotate(-90, 30)
     mpp.drive_speed(3, 50)
     mpp.drive_condition(40, 40, onBlack, False)
@@ -176,19 +177,23 @@ def goYellowSecond():
     u.move_servo(c.servoArm, c.armUp)
     u.move_servo(c.servoClaw, c.clawClosed)
     mpp.pivot_right(-180, 30)
-    #u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown, 5)
-    mpp.rotate(90, 30)
-    mpp.drive_speed(5, 50)
+    mpp.drive_speed(-3, 50)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmHorizontal, 4)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
     u.DEBUG()
 
 def goYellowThird():
     print('Going to yellow third position.')
     mpp.rotate(-70, 50)
-    x.lineFollowRight(6)
+    #Change these to use the corner black line
+    #x.lineFollowCondition(leftOnBlack, False)
+    x.lineFollowRight(5.9) #6
     mpp.rotate(-90, 40)
     mpp.drive_condition(60,60,u.onBlackFront, False)
-    dropOffFarCrate1()
-    dropOffFarCrate2()
+    msleep(12000)
+    dropOffCrates()
+    #dropOffFarCrate1()
+    #dropOffFarCrate2()
 
 def dropOffCrates():
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -205,13 +210,15 @@ def dropOffCrates():
     if c.IS_ORANGE_BOT:
         mpp.drive_speed(12, 50)
     else:
-        mpp.drive_speed(10, 50)
+        mpp.drive_speed(12, 50)#10, 50
     mpp.rotate(90, 30)  # 96
     msleep(200)
+    #Initial value?
     mpp.drive_speed(3.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
 
+#Why do we have new functions for drop off
 def dropOffFarCrate1():
     #mpp.drive_condition(-10, -10, onBlack, True)
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -261,7 +268,6 @@ def driveToYellow(): # Starts from the middle or it won't work and that's not ou
     elif colorOrder[2] == c.YELLOW:
         goYellowThird()
         driveToFarFrisbees()
-        u.DEBUG()
         dropOffFarFrisbee()
 
 def driveToFrisbees():
@@ -282,8 +288,10 @@ def driveToFrisbees():
     msleep(200)
     mpp.drive_speed(2.5, 60)
     mpp.rotate(-90, 30)
-    mpp.drive_speed(-4, 50)
-    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmPickUp)
+    msleep(500)
+    mpp.drive_speed(-3.5, 30)
+    msleep(200)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmPickUp, 4)
     mpp.drive_speed(-2.5, 20)
     msleep(300)
 
@@ -298,13 +306,16 @@ def driveToFarFrisbees():
     while not u.onBlackFront():
         pass
     ao()
-    mpp.drive_condition(100,100,rightOnBlack,False)
-    motor_power(c.LMOTOR, 100)
+    mpp.drive_condition(60,60,rightOnBlack,False)
+    msleep(200)
+    motor_power(c.LMOTOR, 60)
     msleep(1000)
     while not u.onBlackFront():
         pass
     ao()
-    mpp.drive_speed(-24,100)
+    mpp.drive_speed(-24,70)
+
+
 
 
 
@@ -319,12 +330,29 @@ def dropOffFrisbee():
     mpp.rotate(90, 30)
     x.lineFollowLeft(3.7)
     mpp.rotate(90, 30)
-    mpp.drive_speed(-5, 30) #was 8 inches
-    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown, 5)
+    mpp.drive_speed(-7, 30) #was 8 inches
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmHorizontal, 4)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
 
 def dropOffFarFrisbee():
     u.move_servo(c.servoArm, c.armUp)
     u.move_servo(c.servoClaw, c.clawClosed)
+    msleep(300)
+    mpp.drive_speed(6, 70)
+    msleep(200)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmUp)
+    mpp.rotate(-90, 30)
+    msleep(200)
+    mpp.drive_speed(-12, 60)  # was 17 inches
+    msleep(200)
+    mpp.drive_speed(1.5, 60)
+    mpp.rotate(90, 30)
+    msleep(500)
+    mpp.drive_speed(-4.3, 40)
+    msleep(200)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmPickUp, 5)
+    mpp.drive_speed(-2.5, 20)
+
 
 def onBlack():
     return analog(c.FRONT_TOPHAT) > c.TOPHAT_THRESHOLD

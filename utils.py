@@ -173,3 +173,48 @@ def crossBlackFront():
     while onBlackFront():  # wait for white
         pass
     ao()
+
+
+
+def wait_4_light(ignore=False):
+    if ignore:
+        waitForButton()
+        return
+    while not calibrate(c.STARTLIGHT):
+        pass
+    _wait_4(c.STARTLIGHT)
+
+def calibrate(port):
+    print("Press LEFT button with light on")
+    while not w.left_button():
+        pass
+    while w.left_button():
+        pass
+    lightOn = w.analog(port)
+    print("On value =", lightOn)
+    if lightOn > 200:
+        print("Bad calibration")
+        return False
+    msleep(1000)
+    print("Press RIGHT button with light off")
+    while not w.right_button():
+        pass
+    while w.right_button():
+        pass
+    lightOff = w.analog(port)
+    print("Off value =", lightOff)
+    if lightOff < 3000:
+        print("Bad calibration")
+        return False
+
+    if (lightOff - lightOn) < 2000:
+        print("Bad calibration")
+        return False
+    c.startLightThresh = (lightOff - lightOn) / 2
+    print("Good calibration! ", c.startLightThresh)
+    return True
+
+def _wait_4(port):
+    print("waiting for light!! ")
+    while w.analog(port) > c.startLightThresh:
+        pass
