@@ -14,6 +14,7 @@ from constants import IS_YELLOW_BOT
 from constants import LMOTOR
 from constants import RMOTOR
 from constants import *
+from utils import *
 
 from math import pi
 
@@ -23,6 +24,7 @@ from wallaby import freeze
 from wallaby import get_motor_position_counter
 from wallaby import get_servo_position
 from wallaby import motor
+from wallaby import motor_power
 from wallaby import msleep
 from wallaby import seconds
 from wallaby import analog
@@ -157,6 +159,7 @@ def drive_condition(lmotor, rmotor, testFunction, state=True):  # Drives while "
     _clear_ticks()
     if lmotor == 0 or rmotor == 0:
         print ("please use pivot instead!")
+        DEBUG()
 
     elif abs(rmotor) <= abs(lmotor):
         mod = rmotor / (lmotor * 1.0)
