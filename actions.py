@@ -21,11 +21,12 @@ def init():
     p.cameraInit()
     msleep(100)
     u.wait_4_light()
+    shut_down_in(119.5)
     c.startTime = seconds()
 
 def selfTest():
     enable_servos()
-    print ("Hola amigas")
+    print ("Hola amigos")
     u.move_servo(c.servoArm, c.armMid)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmStartPosition)
     mpp.drive_condition(60, 60, leftOnBlack, False)
@@ -104,7 +105,10 @@ def driveToCrates():
     #    mpp.drive_speed(-.5, 40)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
-    mpp.drive_speed(-1, 50)
+    if c.IS_ORANGE_BOT:
+        mpp.drive_speed(-1, 50)
+    else:
+        mpp.drive_speed(.5,50)
     mpp.pivot_right(84, 50)
     mpp.drive_till_black(60, 60)
     #Just added this to prevent turn off line in line follow
@@ -149,7 +153,10 @@ def goYellowFirst():
     mpp.drive_speed(-3, 50)
     mpp.drive_speed(4, 50)
     #Different pattern
-    mpp.drive_speed(-7, 50)
+    if c.IS_ORANGE_BOT:
+        mpp.drive_speed(-6, 50)
+    else:
+        mpp.drive_speed(-7, 50)
     mpp.arc_radius(90, 4.3, -60)
     mpp.drive_speed(-5, 60)
 
@@ -185,7 +192,7 @@ def goYellowSecond():
     u.move_servo(c.servoClaw, c.clawClosed, 25)
     mpp.rotate(-150, 50)
     mpp.drive_timed(60, 60, 2.5)
-    msleep(9500)
+    msleep(10000)
     mpp.drive_timed(-60, -60, 2.5)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmHorizontal, 4)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
@@ -333,7 +340,7 @@ def driveToFrisbees():
     mpp.drive_timed(-20, -10, .4)
     mpp.drive_timed(-10, -20, .4)
     mpp.drive_timed(-10, -10, .4)
-    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmUp-100, 3)
+    u.move_servo(c.servoFrisbeeArm, c.frisbeeArmUp-100, 3) #May need to change position bc it is too high
     mpp.drive_timed(-10, -10, 1)
     msleep(200)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmPickUp, 4)

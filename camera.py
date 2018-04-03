@@ -95,7 +95,7 @@ def colorDefine(color):
 
 
 def determineOrder(list):
-    options=[c.YELLOW,c.RED,c.GREEN]
+    options=[c.GREEN,c.RED,c.YELLOW]
     #Logic to determine which color block is in which place
     #(work in progress) If one of the first two spots checked is empty, robot drives to final scoring zone to check last color
     #Prints a list with order of colors

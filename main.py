@@ -9,7 +9,7 @@ import drive as d
 import motorsPlusPlus as mpp
 
 def main():
-    print ("Running")
+    print ("Running the code")
     #mpp.drive_speed(36,100)
     #msleep(500)
     #u.DEBUG()
@@ -20,7 +20,7 @@ def main():
     act.seeBlocksTwo()
     act.driveToCrates()
     act.driveToYellow()
-
+    u.DEBUG()
     # act.driveToCenter()
     # act.driveToYellow()
 
