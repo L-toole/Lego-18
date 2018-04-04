@@ -99,10 +99,6 @@ def seeBlocksTwo():
 
 def driveToCrates():
     print ("Driving to crates")
-    #if c.IS_ORANGE_BOT:
-    #    pass
-    #else:
-    #    mpp.drive_speed(-.5, 40)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawOpen)
     if c.IS_ORANGE_BOT:
@@ -210,7 +206,9 @@ def goYellowThird():
         x.lineFollowConditionSlow(rightOnBlack, False)
         mpp.drive_speed(-4, 40)
     else:
-        x.lineFollowRight(6.3)
+        x.lineFollowConditionSlow(rightOnBlack, False)
+        mpp.drive_speed(-4, 40)
+        #x.lineFollowRight(6.3)
     mpp.rotate(-90, 40)
     mpp.drive_condition(-40, -40, rightOnBlack, False)
     mpp.drive_condition(-20, 1, leftOnBlack, False)
@@ -223,8 +221,6 @@ def goYellowThird():
     mpp.drive_speed(-2, 50)
     mpp.drive_speed(2.5, 50)
     mpp.drive_speed(-2.5, 50)
-    #dropOffFarCrate1()
-    #dropOffFarCrate2()
 
 def dropOffCrates():
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -262,45 +258,6 @@ def fasterDropOffCrates():
     mpp.drive_speed(.5, 50)
     u.move_servo(c.servoArm, c.armBlockLevel)
     u.move_servo(c.servoClaw, c.clawFullyOpen)
-
-#Why do we have new functions for drop off
-def dropOffFarCrate1():
-    #mpp.drive_condition(-10, -10, onBlack, True)
-    u.move_servo(c.servoArm, c.armBlockLevel)
-    mpp.drive_speed(0.5,50)
-    u.move_servo(c.servoClaw, c.clawOpen)
-    u.move_servo(c.servoArm, c.armDestack)
-    #mpp.rotate(-2,10)
-    u.move_servo(c.servoClaw, c.clawClosed,20)
-    msleep(1000)
-    u.move_servo(c.servoArm, c.armUp,20)
-    msleep(3000)  # waiting for create
-    print("waiting for create")
-
-def dropOffFarCrate2():
-    if c.IS_ORANGE_BOT:
-        mpp.drive_condition(-100, -100, rightOnBlack, False)
-        motor_power(c.LMOTOR, 100)
-        msleep(1000)
-        while not u.onBlackFront():
-            pass
-        ao()
-        x.lineFollowLeft(1.8)
-    else:
-        # SHOULD BE LINE FOLLOW
-        mpp.drive_speed(-6, 30)  # -5
-        msleep(500)
-        mpp.rotate(-88, 30)  # 90
-        # mpp.drive_speed(10, 50)
-    mpp.rotate(90, 30)  # 96
-    msleep(200)
-    mpp.drive_condition(50,50, u.onBlackFront, False)
-    u.move_servo(c.servoArm, c.armBlockLevel)
-    u.move_servo(c.servoClaw, c.clawFullyOpen)
-    mpp.drive_speed(1, 50)
-    mpp.drive_speed(-3, 50)
-    mpp.drive_speed(4, 50)
-    mpp.drive_speed(-6, 50)
 
 
 def driveToYellow(): # Starts from the middle or it won't work and that's not our fault!
