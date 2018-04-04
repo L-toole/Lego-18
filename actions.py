@@ -172,7 +172,10 @@ def goYellowSecond():
     mpp.drive_condition(60, 60, onBlack, True)
     mpp.drive_condition(60, 60, onBlack, False)
     mpp.drive_condition(60, 60, onBlack, True)
-    mpp.drive_speed(1, 40)
+    if c.IS_ORANGE_BOT:
+        mpp.drive_speed(1, 40)
+    else:
+        mpp.drive_speed(2, 45)
     mpp.rotate(90, 40)
     #line follow middle line to yellow
     x.lineFollowRight(3)
@@ -413,7 +416,10 @@ def dropOffFrisbee():
     mpp.rotate(90, 30)
     x.lineFollowLeft(3.7)
     mpp.rotate(90, 30)
-    mpp.drive_speed(-6.5, 30) #was 8 inches
+    if c.IS_ORANGE_BOT:
+        mpp.drive_speed(-6.5, 30) #was 8 inches
+    else:
+        mpp.drive_speed(-5.5, 28)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmHorizontal, 4)
     u.move_servo(c.servoFrisbeeArm, c.frisbeeArmDown)
 
