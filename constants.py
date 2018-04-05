@@ -27,7 +27,7 @@ WHEEL_DISTANCE = 5.50 #205 - 4.25  # Distance between the two wheels
 
 
 if IS_ORANGE_BOT:
-    INCHES_TO_TICKS = 227 #192 #larger numbers = longer drive
+    INCHES_TO_TICKS = 222 #192 #larger numbers = longer drive
 
     lAdjust =  1.02 #.86 #.875 # 1.12 # .99  # adjust left wheel counter to fix drift; Larger number makes the robot drive left...?
 else: # Blue Bot
