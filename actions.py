@@ -213,14 +213,15 @@ def goYellowThird():
     mpp.drive_condition(-40, -40, rightOnBlack, False)
     mpp.drive_condition(-20, 1, leftOnBlack, False)
     mpp.rotate(-3, 30)
+    #RIGHT HERE
     mpp.drive_condition(60, 60, onBlack, False)
     msleep(9000)
     dropOffCrates()
     mpp.drive_speed(-1, 50)
     mpp.drive_speed(3, 50)
     mpp.drive_speed(-2, 50)
-    mpp.drive_speed(2.5, 50)
-    mpp.drive_speed(-2.5, 50)
+    mpp.drive_speed(3.5, 65)
+    mpp.drive_speed(-3.5, 65)
 
 def dropOffCrates():
     u.move_servo(c.servoArm, c.armBlockLevel)
@@ -373,6 +374,7 @@ def dropOffFrisbee():
     mpp.rotate(90, 30)
     x.lineFollowLeft(3.7)
     mpp.rotate(90, 30)
+    #RIGHT HERE
     if c.IS_ORANGE_BOT:
         mpp.drive_speed(-6.5, 30) #was 8 inches
     else:
@@ -388,6 +390,10 @@ def dropOffFrisbeeFar():
     mpp.drive_condition(70, 70, onBlack, True)
     mpp.drive_condition(70, 70, onBlack, False)
     mpp.drive_condition(70, 70, onBlack, True)
+    if c.IS_ORANGE_BOT:
+        mpp.drive_speed(1.5, 70)
+    else:
+        pass
     mpp.rotate(-75, 50)
     x.lineFollowLeft(4.8)
     mpp.rotate(-90, 50)
