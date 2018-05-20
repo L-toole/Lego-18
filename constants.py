@@ -31,7 +31,7 @@ if IS_ORANGE_BOT:
     lAdjust =  1.02 #.86 #.875 # 1.12 # .99  # adjust left wheel counter to fix drift; Larger number makes the robot drive left...?
 else: # Blue Bot
     INCHES_TO_TICKS = 204
-    lAdjust = 1.083  # adjust left wheel counter to fix drift
+    lAdjust = 1.125  # adjust left wheel counter to fix drift    #1.083
 
 # Servos
 if IS_ORANGE_BOT:
@@ -68,15 +68,15 @@ else:  # Blue Bot
 
 #New claw posistion values
 if IS_ORANGE_BOT:
-    clawOpen = 1400 + 200
-    clawFullyOpen = 1800 + 100
+    clawOpen = 1620
+    clawFullyOpen = 1980
     clawClosed = 840 + 150
 else:  # Blue Bot
-    clawOpen = 870
+    clawOpen = 870-15
     clawFullyOpen = 1550
     clawClosed = 20
 
-#Arm posistion values
+#Arm posistion values0
 if IS_ORANGE_BOT:
     armUp = 900
     armBlockLevel = 1580
@@ -130,6 +130,6 @@ else: # Blue Bot
     FRONT_TOPHAT = 0
     LEFT_TOPHAT = 2
     RIGHT_TOPHAT = 1
-    BACK_TOPHAT = 4
+    BACK_TOPHAT = 5
     STARTLIGHT = 3
     TOPHAT_THRESHOLD = 2000 #2700

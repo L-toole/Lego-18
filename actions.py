@@ -104,7 +104,7 @@ def driveToCrates():
     if c.IS_ORANGE_BOT:
         mpp.drive_speed(-1, 50)
     else:
-        mpp.drive_speed(.5,50)
+        mpp.drive_speed(1.5,60)
     mpp.pivot_right(84, 50)
     mpp.drive_till_black(60, 60)
     #Just added this to prevent turn off line in line follow
@@ -139,7 +139,7 @@ def goYellowFirst():
     if c.IS_ORANGE_BOT:
         x.lineFollowLeft(5.1)
     else:
-        x.lineFollowLeft(4.3)
+        x.lineFollowLeft(5) #4.3
     #Do we need to change to a stop at corner black tape
     mpp.rotate(90, 30)
     mpp.drive_speed(9, 50)
@@ -177,7 +177,8 @@ def goYellowSecond():
     x.lineFollowRight(3)
     msleep(2500)
     x.lineFollowConditionSlow(leftOnBlack, False)
-    mpp.drive_speed(8.5, 60)
+    #RIGHT HERE
+    mpp.drive_speed(7.2, 55)#8.5, 60
     mpp.rotate(-90, 40)
     mpp.drive_condition(50, 50, onBlack, False)
     fasterDropOffCrates()
@@ -244,6 +245,7 @@ def dropOffCrates():
     u.move_servo(c.servoClaw, c.clawFullyOpen)
 
 def fasterDropOffCrates():
+    mpp.rotate(-4, 50)
     u.move_servo(c.servoArm, c.armBlockLevel, 15)
     u.move_servo(c.servoClaw, c.clawOpen, 15)
     mpp.drive_speed(1.5, 70)
